@@ -1,0 +1,100 @@
+﻿.right-fix-section{
+    position:fixed;
+    right:0;
+    z-index:999;
+    top:159px
+}
+.right-section{
+    float:right;
+    width:50px
+}
+.right-section ul li{
+    width:45px;
+    background:#A20A3A;
+    height:40px;
+    margin-bottom:1px;
+    vertical-align:middle;
+    float:right;
+    /*display:inline;
+    */
+    cursor:pointer;
+    /*overflow:hidden*/
+}
+.right-section ul li:hover{
+    width:162px;
+    height:40px;
+    position:relative;
+    right:0;
+    transition:all .4s ease
+}
+.right-section ul li i,.right-section ul li strong{
+    width:32px;
+    margin:4px 7px;
+    height:32px;
+    border-radius:50%;
+    float:left;
+    font-size:20px;
+    text-align:center;
+    line-height:35px
+}
+.right-section ul li .fa-star{
+    background:#f98c39;
+    color:#fff
+}
+.recruitment{
+    background:#06b093;
+    color:#fff;
+    padding: -12px;
+    overflow:hidden
+}
+.right-section ul li .fa-download{
+    background:#15944b;
+    color:#fff
+}
+.right-section ul li:first-child i,.right-section ul li:first-child strong{
+    font-size:23px
+}
+.right-section ul li a{
+    color:#000;
+    float:left;
+    width:162px;
+    text-decoration:none
+}
+.right-section ul li .fa-apple{
+    background:#333;
+    color:#fff
+}
+.right-section ul li .twitter{
+    background:#1cb7eb;
+    color:#fff
+}
+.right-section ul li .fa-android{
+    font-size:22px;
+    background:#8a9b24;
+    color:#fff
+}
+.right-section ul li span:hover{
+    text-decoration:underline
+}
+.right-section ul li a span{
+    background:#fff;
+    float:right;
+    font-size:11px;
+    height:40px;
+    line-height:26px;
+    padding:5px 10px;
+    text-transform:capitalize;
+    width:116px
+}
+.right-section ul li:nth-child(3) a span{
+    line-height:14px!important;
+    padding:10px!important
+}
+.facebook{
+    background:#3a589b;
+    color:#fff
+}
+.linkedin{
+    background:#007ab9;
+    color:#fff
+}
