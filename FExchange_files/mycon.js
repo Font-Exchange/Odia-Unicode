@@ -1,11 +1,10 @@
 ﻿$(document).ready(function() {
     $('#btncan').click(function() {
     var textarea=$('#uInput'); 
-    textarea.val(textarea.val().replace(/_Wò/g,"_Wÿò")); 
-    textarea.val(textarea.val().replace(/_õPû/g,"_*û"));
-    textarea.val(textarea.val().replace(/eõR/g,"e¬"));
-    textarea.val(textarea.val().replace(/@õP/g,"@*"));
-    textarea.val(textarea.val().replace(/aõU/g,"a<"));
+textarea.val(textarea.val().replace(/_õPû/g,"_*û"));
+textarea.val(textarea.val().replace(/eõR/g,"e¬"));
+textarea.val(textarea.val().replace(/@õP/g,"@*"));
+textarea.val(textarea.val().replace(/aõU/g,"a<"));
 textarea.val(textarea.val().replace(/_õPê/g,"_*ê"));
 textarea.val(textarea.val().replace(/ùaõU/g,"ùa<"));
 textarea.val(textarea.val().replace(/eõM/g,"ew"));
@@ -44,39 +43,18 @@ textarea.val(textarea.val().replace(/aõ]ê/g,"a§ê"));
 textarea.val(textarea.val().replace(/iòõ]ê/g,"iò§ê")); 
 textarea.val(textarea.val().replace(/iõ_â/g,"iµâ")); 
 textarea.val(textarea.val().replace(/iûõ_â/g,"iûµâ"));
-textarea.val(textarea.val().replace(/_eòWû/g,"_eòWÿû"));
-textarea.val(textarea.val().replace(/_Wû/g,"_Wÿû"));
-textarea.val(textarea.val().replace(/ceêWò/g,"ceêWÿò"));
-textarea.val(textarea.val().replace(/aX/g,"aXÿ"));
-textarea.val(textarea.val().replace(/_X/g,"_Xÿ"));
-textarea.val(textarea.val().replace(/KZêð_l/g,"K©ðé_l"));
-textarea.val(textarea.val().replace(/IWògû/g,"IWÿògû"));
-textarea.val(textarea.val().replace(/ù_÷ûejòZý/g,"ù_øùeûjòZ¥"));
-textarea.val(textarea.val().replace(/ù_÷û/g,"ù_ø"));
-textarea.val(textarea.val().replace(/û÷/g,"ø"));
 textarea.val(textarea.val().replace(/_PûõdZ/g,"_*ûdZ"));
 textarea.val(textarea.val().replace(/ie_Põ/g,"ie_*"));
 textarea.val(textarea.val().replace(/Tkú/g,"¬kò"));
-textarea.val(textarea.val().replace(/ù_øejòZý/g,"ù_øùeûjòZ¥"));
-textarea.val(textarea.val().replace(/MW/g,"MWÿ"));
-textarea.val(textarea.val().replace(/aäK¨/g,"aäK"));
-textarea.val(textarea.val().replace(/ùWÿeû/g,"ùWeû"));
 textarea.val(textarea.val().replace(/^òùŸðg/g,"^òù\ðg"));
-textarea.val(textarea.val().replace(/MWò/g,"MWÿò"));
-textarea.val(textarea.val().replace(/eaò¦â/g,"eaú¦â"));
-textarea.val(textarea.val().replace(/ùPû÷/g,"ùPø"));
-textarea.val(textarea.val().replace(/ùP÷û/g,"ùPø"));
 textarea.val(textarea.val().replace(/iõbâ/g,"i¸â"));
 textarea.val(textarea.val().replace(/iõ_û\K/g,"iµû\K"));
 textarea.val(textarea.val().replace(/iõ_û/g,"iµû"));
 textarea.val(textarea.val().replace(/iõ_/g,"iµ"));
-
-
-
-
-
-
-
+textarea.val(textarea.val().replace(/Wÿÿ/g,"Wÿ"));
+textarea.val(textarea.val().replace(/iõMúZ/g,"iwúZ"));
+textarea.val(textarea.val().replace(/òò/g,"ò"));
+textarea.val(textarea.val().replace(/gûõZ/g,"gû«"));
    
     });
 });
