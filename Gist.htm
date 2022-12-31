@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html class="wf-opensans-n4-active wf-opensanscondensed-n7-active wf-active" lang="En"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button[not:disabled]:hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel[not:disabled]:hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger[not:disabled]:hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+<style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button[not:disabled]:hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel[not:disabled]:hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger[not:disabled]:hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style><style type="text/css">.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button[not:disabled]:hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel[not:disabled]:hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger[not:disabled]:hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}</style>
+
+<title>Odia Unicode Converter</title>
+
+<meta content="Odia Font converter, Oriya,Font Converter, Unicode Converter, Odia Akruti Converter, Odia Unicode to Akruti Converter" name="keywords"><meta content="Odia Akruti Font Converter" <meta="" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="expoodisha">
+<meta name="description" content="Odia Unicode Font Converter">
+<script src="./Gist_files/webfont.js" type="text/javascript" async=""></script>
+<script src="./Gist_files/webfont_002.js" type="text/javascript" async=""></script>
+<script src="./Gist_files/webfont(1).js" type="text/javascript" async=""></script>
+<script src="./Gist_files/webfont1.js" type="text/javascript" async=""></script>
+<script src="./Gist_files/jquery.js"></script>
+<script src="./Gist_files/jquery_002.js"></script>
+<script src="./Gist_files/gist-s.js"></script> 
+<link rel="stylesheet" href="./Gist_files/font-awesome.css">
+<link rel="stylesheet" href="./Gist_files/base.css">
+<script src="./Gist_files/mycon.js"></script> 
+
+<!--[if lt IE 9]>
+<!--Custom Sccript -->
+
+
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+<style>
+.button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  padding: 11px 48px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8%;
+}
+
+.button2 {background-color:  #138d75} /* Green */
+.button3 {background-color:  #ba4a00} /* Red */ 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */ 
+.button5 {background-color: #555555;} /* Black */
+}
+
+</style>
+
+
+<style>
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.image1 {
+    -webkit-animation: blink 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: blink 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: blink 1s;
+    -o-animation-iteration-count: infinite;
+}
+</style>
+<style>
+
+form.wordcountform{
+	width: 90%;
+	overflow: hidden;
+}
+
+form.wordcountform * {
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#wordcounter{
+	width: 100%;
+	height: 350px;
+	background: lightyellow;
+	border: 1px solid gray;
+}
+
+.outputval{
+	background: darkred;
+	color: white;
+	padding: 3px 5px;
+}
+
+.outputval:first-of-type{
+	margin-right: 15px;
+}
+
+form.wordcountform button{
+	float: right;
+}
+textarea  
+{  
+   font-family:"DataSoft_Uniweb", Verdana;  
+   font-size: 14px;   
+}
+
+</style> 
+
+<body>
+    
+   
+   
+
+<meta http-equiv="description" name="description">
+<style>
+<!--
+.image1 {
+    -webkit-animation: blink 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: blink 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: blink 1s;
+    -o-animation-iteration-count: infinite;
+}
+
+textarea {
+  width: 348px;
+  height: 1135px;
+  margin-left: 0.4em;
+}
+textarea  
+{  
+   font-family:"DataSoft_Uniweb", Verdana;  
+   font-size: 14px;   
+}
+
+.outputval{
+	background: darkred;
+	color: white;
+	padding: 3px 5px;
+}
+
+</style>
+
+    <div>
+        
+        <div class="right-fix-section">
+            <div class="right-section">
+                <ul>
+                    <li>
+					<a target="_blank" href="https://font-exchange.github.io/spellchecker/"><strong class="recruitment">
+                        O</strong><span>Odia Spell Checker</span></a></li>
+                    <li>
+					<a target="_blank" href="https://font-exchange.github.io/Odia-Unicode/phpspell/"><strong class="recruitment">
+                        E</strong><span>Eng. Spell Checker&nbsp;&nbsp; </span>
+					</a></li>
+                    <li>
+					<a target="_blank" href="https://font-exchange.github.io/Odia-Unicode/dictionary.htm"><strong class="recruitment">
+                        Di</strong><span>Dictionary </span></a></li>
+                    <li>
+					<a target="_blank" href="https://font-exchange.github.io/Odia-Unicode/componets.htm"><strong class="recruitment">
+                        C</strong><span>Componet</span></a></li>
+					<li>
+					<a target="_blank" href="https://font-exchange.github.io/Odia-Unicode/comment.htm"><strong class="recruitment">
+                        C</strong><span>Comments</span></a></li>
+					<li>
+					<a target="_blank" href="https://font-exchange.github.io/Odia-Unicode/fonts/Dtsoft_uni.ttf"><strong class="recruitment">
+                        DF</strong><span>Download font</span></a></li>
+                </ul>
+            </div>
+        </div>
+            
+
+
+<div class="midcontainer ">
+
+
+<!--[if lt IE 9]>
+<!--Custom Sccript -->
+<script src="./Gist_files/res1.js"></script>
+<script type="application/ld+json"></script>
+
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
+
+<style>
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@-o-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.image1 {
+    -webkit-animation: blink 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: blink 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: blink 1s;
+    -o-animation-iteration-count: infinite;
+}
+</style>
+<style>
+
+form.wordcountform{
+	width: 90%;
+	overflow: hidden;
+}
+
+form.wordcountform * {
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#wordcounter{
+	width: 100%;
+	height: 350px;
+	background: lightyellow;
+	border: 1px solid gray;
+}
+
+.outputval{
+	background: darkred;
+	color: white;
+	padding: 3px 5px;
+}
+
+.outputval:first-of-type{
+	margin-right: 15px;
+}
+
+form.wordcountform button{
+	float: right;
+}
+textarea  
+{  
+   font-family:"DataSoft_Uniweb", Verdana;  
+   font-size: 14px;   
+}
+
+</style> 
+
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top" style="display: block;">Top</button>
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top effect">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				</button>
+			<img src="https://font-exchange.github.io/Odia-Unicode/logo.png" width="200" height="50" border="0"><a href="https://expoodisha.com/FExchange/FExchange.htm/">
+				</a>
+		</div>
+		<div class="navbar-collapse collapse" id="navbar">
+						<form class="navbar-form navbar-right" role="search" action="file:///D:/search/">
+				<div class="input-group">
+					<input type="search" name="q" class="form-control" required="" placeholder="Search..." autocomplete="on" list="q">
+					<datalist id="q">
+						
+					</option></datalist>
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+					</div>
+				</div>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="https://font-exchange.github.io/Odia-Unicode/"><b><span class="glyphicon glyphicon-home"></span> Home <span class="sr-only">(current)</span></b></a></li>
+				<li class="dropdown">
+					<a href="https://font-exchange.github.io/Odia-Unicode/componets.htm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-cog"></span> Componets</b></a></li>
+				<li class="dropdown">
+					<a href="https://font-exchange.github.io/Odia-Unicode/comment.htm"><b><span class="glyphicon glyphicon-file"></span> Comments</b></a></li>
+				<li class="dropdown">
+					<a href="https://font-exchange.github.io/spellchecker/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-th-large"></span> 
+					Spell Checker</b></a></li>
+				<li><a href="https://expoodisha.com/Software/contactform.php"><b><span class="glyphicon glyphicon-envelope"></span> Contact</b></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8">
+
+			<form name="frm">
+			<div class="form-group">
+				<h5><font size="3" face="Verdana">Exchange Content&nbsp; |&nbsp;&nbsp;&nbsp; </font>
+				<input class="button0" title="You are now in Akruti mode" id="" value="Gist" type="button">&nbsp;<img src="./Gist_files/red.png" class="image1">&nbsp;&nbsp;
+			<b>|</b>&nbsp;
+				
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type Face&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+<select name="menu1" id="menu1" size="1">
+<option selected="selected">Select</option>
+<option value="https://font-exchange.github.io/Odia-Unicode/">Akruti</option>
+<option value="https://font-exchange.github.io/Odia-Unicode/Shreelipi.htm">Shreelipi</option>
+<option value="https://font-exchange.github.io/Odia-Unicode/Gist.htm">Gist</option>
+<option value="https://expoodisha.com/Software/FExchange/I-lipi.htm">I-Lipi</option>
+<option value="https://expoodisha.com/Software/FExchange/shruti.htm">Shruti</option>
+<option value="https://expoodisha.com/Software/FExchange/aprant.htm">Aprant</option>
+</select>
+<script type="text/javascript">
+ var urlmenu = document.getElementById( 'menu1' );
+ urlmenu.onchange = function() {
+      window.open(  this.options[ this.selectedIndex ].value );
+ };
+</script>  
+  </h5>
+				<p>&nbsp;<textarea class="form-control" rows="16" placeholder="Insert Content Here..." id="uInput" name="S1" cols="144" style="font-family: Verdana; font-size: 20"></textarea>
+				</p>
+				<div class="row">
+					<div class="col-lg-12">
+						<button type="button"  class="button"id="fnrbtn" onclick="showButton()">Check ▲</button>
+						<button type="button" class="button button2" id="btncan">Conjuct ►◄</button>
+						<button type="button" class="button button3" id="converter" value="Convert►" onclick="gist_to_unicode()">Convert&amp;copy►
+						</button>
+						<button type="reset" id="reset0" onclick="hidebutton()" class="button button5">
+						Reset Θ</button>
+
+						<p><font size="1">
+						<input id="nospaces" name="nospaces1" value="V1" nochecked="" type="radio"></font><font size="2"> 
+						Replace whitespaces with a single space but delete all 
+						tabs </font><font size="1">
+<input id="notabs" name="nospaces" value="V1" checked="checked" type="radio"><font size="2"> 
+						both multiple whitespaces and tabs with a single space</font></font><font size="2">&nbsp;
+						<script type="text/javascript" src="../dd/FExchange/FExchange_files/esr.js"></script>
+						</font>
+
+						</p></div>
+					<p>&nbsp;</div>
+			</div>
+			<div id="TextBoxesGroup" class="form-horizontal">
+				<div id="TextBoxDiv1" class="form-group">
+					<label class="col-lg-2 control-label">Word #1 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #1" id="findbox1" name="T136" size="20" type="password" value="\">
+					</div>
+					<label class="col-lg-2 control-label">Exc #1 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #1" id="replacebox1" name="T1" size="20" type="password" value="ଥ">
+					</div>
+				</div>
+				<div id="TextBoxDiv2" class="form-group">
+					<label class="col-lg-2 control-label">Word #2 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #2" id="findbox2" name="T137" size="20" type="password" value="*‡¼">
+					</div>
+					<label class="col-lg-2 control-label">Exc #2 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #2" id="replacebox2" name="T2" size="20" type="password" value="ଙ୍କୁ">
+					</div>
+				</div>
+				<div id="TextBoxDiv3" class="form-group">
+					<label class="col-lg-2 control-label">Word #3 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #3" id="findbox3" name="T138" size="20" type="password" value="¨ÞÆ">
+					</div>
+					<label class="col-lg-2 control-label">Exc #3 :</label>
+					<div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #3" id="replacebox3" name="T3" size="20" type="password" value="ଣ୍ଡି">
+					</div>
+				</div>
+			<div id="TextBoxDiv4" class="form-group"><label for="name" class="col-lg-2 control-label">
+				Word #4 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #4" id="findbox4" name="T139" size="20" type="password" value="Ò["></div><label for="name" class="col-lg-2 control-label">
+				Exc #4 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Replace #4" id="replacebox4" name="T4" size="20" type="password" value="ତେ"></div></div><div id="TextBoxDiv5" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #5 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #5" id="findbox5" name="T140" size="20" type="password" value="Ò×"></div><label for="name" class="col-lg-2 control-label">
+					Exc #5 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #5" id="replacebox5" name="T5" size="20" type="password" value="ୌ"></div></div><div id="TextBoxDiv6" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #6 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #6" id="findbox6" name="T141" size="20" type="password" value="«ÞÆ"></div><label for="name" class="col-lg-2 control-label">
+					Exc #6 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #6" id="replacebox6" name="T6" size="20" type="password" value="ନ୍ତି"></div></div><div id="TextBoxDiv7" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #7 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #7" id="findbox7" name="T142" size="20" type="password" value="Ò\"></div><label for="name" class="col-lg-2 control-label">
+					Exc #7 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #7" id="replacebox7" name="T7" size="20" type="password" value="ଥେ"></div></div><div id="TextBoxDiv8" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #8 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #8" id="findbox8" name="T143" size="20" type="password" value="#Þ"></div><label for="name" class="col-lg-2 control-label">
+					Exc #8 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #8" id="replacebox8" name="T8" size="20" type="password" value="Þ"></div></div><div id="TextBoxDiv9" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #9 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #9" id="findbox9" name="T144" size="20" type="password" value=" þ þ"></div><label for="name" class="col-lg-2 control-label">
+					Exc #9 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #9" id="replacebox9" name="T9" size="20" type="password" value="þ"></div></div><div id="TextBoxDiv10" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #10 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #10" id="findbox10" name="T145" size="20" type="password" value="*Þ¼"></div><label for="name" class="col-lg-2 control-label">
+					Exc #10 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #10" id="replacebox10" name="T10" size="20" type="password" value="ଙ୍କି"></div></div><div id="TextBoxDiv11" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #11 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #11" id="findbox11" name="T146" size="20" type="password" value="jê"></div><label for="name" class="col-lg-2 control-label">
+					Exc #11 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #11" id="replacebox11" name="T11" size="20" type="password" value="ସ୍ମ"></div></div><div id="TextBoxDiv12" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #12 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #12" id="findbox12" name="T147" size="20" type="password" value="Á¤"></div><label for="name" class="col-lg-2 control-label">
+					Exc #12 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #12" id="replacebox12" name="T12" size="20" type="password" value="ଳ୍ପ"></div></div><div id="TextBoxDiv13" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #13 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #13" id="findbox13" name="T148" size="20" type="password" value="«ÞÆ"></div><label for="name" class="col-lg-2 control-label">
+					Exc #13 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #13" id="replacebox13" name="T13" size="20" type="password" value="ନ୍ତି"></div></div><div id="TextBoxDiv14" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #14 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #14" id="findbox14" name="T149" size="20" type="password" value="c÷"></div><label for="name" class="col-lg-2 control-label">
+					Exc #14 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #14" id="replacebox14" name="T14" size="20" type="password" value="ମ୍ଭ"></div></div><div id="TextBoxDiv15" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #15 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #15" id="findbox15" name="T150" size="20" type="password" value="“¤"></div><label for="name" class="col-lg-2 control-label">
+					Exc #15 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #15" id="replacebox15" name="T15" size="20" type="password" value="ପ୍ପ"></div></div><div id="TextBoxDiv16" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #16 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #16" id="findbox16" name="T151" size="20" type="password" value="[ö"></div><label for="name" class="col-lg-2 control-label">
+					Exc #16 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #16" id="replacebox16" name="T16" size="20" type="password" value="ତ୍ର"></div></div><div id="TextBoxDiv17" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #17 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #17" id="findbox17" name="T152" size="20" type="password" value="éã"></div><label for="name" class="col-lg-2 control-label">
+					Exc #17 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #17" id="replacebox17" name="T17" size="20" type="password" value="୍ୱୁ"></div></div><div id="TextBoxDiv18" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #18 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #18" id="findbox18" name="T153" size="20" type="password" value="cøã"></div><label for="name" class="col-lg-2 control-label">
+					Exc #18 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #18" id="replacebox18" name="T18" size="20" type="password" value="ମ୍ଭୁ"></div></div><div id="TextBoxDiv19" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #19 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #19" id="findbox19" name="T154" size="20" type="password" value="mþ"></div><label for="name" class="col-lg-2 control-label">
+					Exc #19 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #19" id="replacebox19" name="T19" size="20" type="password" value="ଲ"></div></div><div id="TextBoxDiv20" class="form-group"><label for="name" class="col-lg-2 control-label">
+					Word #20 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Find #20" id="findbox20" name="T155" size="20" type="password" value="[é"></div><label for="name" class="col-lg-2 control-label">
+					Exc #20 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #20" id="replacebox20" name="T20" size="20" type="password" value="ତ୍ବ"></div></div><div id="TextBoxDiv23" class="form-group"><label for="name" class="col-lg-2 control-label">Word #23 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #23" id="findbox23" name="T156" size="20" type="password" value="_ËÔ"></div><label for="name" class="col-lg-2 control-label">Exc #23 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #23" id="replacebox23" name="T23" size="20" type="password" value="ନ୍ୟୂ"></div></div><div id="TextBoxDiv24" class="form-group"><label for="name" class="col-lg-2 control-label">Word #24 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #24" id="findbox24" name="T157" size="20" type="password" value="Òkþ"></div><label for="name" class="col-lg-2 control-label">Exc #24 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #24" id="replacebox24" name="T24" size="20" type="password" value="ହେ"></div></div><div id="TextBoxDiv25" class="form-group"><label for="name" class="col-lg-2 control-label">Word #25 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #25" id="findbox25" name="T158" size="20" type="password" value="ÒkþÐ"></div><label for="name" class="col-lg-2 control-label">Exc #25 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #25" id="replacebox25" name="T25" size="20" type="password" value="ହୋ"></div></div><div id="TextBoxDiv26" class="form-group"><label for="name" class="col-lg-2 control-label">Word #26 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #26" id="findbox26" name="T159" size="20" type="password" value="]é"></div><label for="name" class="col-lg-2 control-label">Exc #26 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #26" id="replacebox26" name="T26" size="20" type="password" value="ଦ୍ବ"></div></div><div id="TextBoxDiv27" class="form-group"><label for="name" class="col-lg-2 control-label">Word #27 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #27" id="findbox27" name="T160" size="20" type="password" value="Ò]×"></div><label for="name" class="col-lg-2 control-label">Exc #27 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #27" id="replacebox27" name="T27" size="20" type="password" value="ଦୌ"></div></div><div id="TextBoxDiv28" class="form-group"><label for="name" class="col-lg-2 control-label">Word #28 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #28" id="findbox28" name="T161" size="20" type="password" value="Ò]ö×"></div><label for="name" class="col-lg-2 control-label">Exc #28 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #28" id="replacebox28" name="T28" size="20" type="password" value="ଦ୍ରୌ"></div></div><div id="TextBoxDiv29" class="form-group"><label for="name" class="col-lg-2 control-label">Word #29 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #29" id="findbox29" name="T162" size="20" type="password" value="]öã"></div><label for="name" class="col-lg-2 control-label">Exc #29 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #29" id="replacebox29" name="T29" size="20" type="password" value="ଦ୍ରୁ"></div></div><div id="TextBoxDiv30" class="form-group"><label for="name" class="col-lg-2 control-label">Word #30 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #30" id="findbox30" name="T163" size="20" type="password" value="ତେ×"></div><label for="name" class="col-lg-2 control-label">Exc #30 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #30" id="replacebox30" name="T30" size="20" type="password" value="ତୌ"></div></div><div id="TextBoxDiv31" class="form-group"><label for="name" class="col-lg-2 control-label">Word #31 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #31" id="findbox31" name="T164" size="20" type="password" value="Òଥ×"></div><label for="name" class="col-lg-2 control-label">Exc #31 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #31" id="replacebox31" name="T31" size="20" type="password" value="ଥୌ"></div></div><div id="TextBoxDiv32" class="form-group"><label for="name" class="col-lg-2 control-label">Word #32 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #32" id="findbox32" size="20" name="T165" type="password" value="Ò$¼×"></div><label for="name" class="col-lg-2 control-label">Exc #32 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #32" id="replacebox32" name="T32" size="20" type="password" value="ଫୌ"></div></div><div id="TextBoxDiv33" class="form-group"><label for="name" class="col-lg-2 control-label">Word #33 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #33" id="findbox33" name="T166" size="20" type="password" value="Ò]ö"></div><label for="name" class="col-lg-2 control-label">Exc #33 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #33" id="replacebox33" name="T33" size="20" type="password" value="ଦ୍ରେ"></div></div><div id="TextBoxDiv34" class="form-group"><label for="name" class="col-lg-2 control-label">Word #34 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #34" id="findbox34" name="T167" size="20" type="password" value="Ò^õ"></div><label for="name" class="col-lg-2 control-label">Exc #34 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #34" id="replacebox34" name="T34" size="20" type="password" value="ଧ୍ରେ"></div></div><div id="TextBoxDiv40" class="form-group"><label for="name" class="col-lg-2 control-label">Word #40 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #40" id="findbox40" name="T168" size="20" type="password" value="Ò$õ¼"></div><label for="name" class="col-lg-2 control-label">Exc #40 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #40" id="replacebox40" name="T40" size="20" type="password" value="ଫ୍ରେ"></div></div><div id="TextBoxDiv41" class="form-group"><label for="name" class="col-lg-2 control-label">Word #41 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #41" id="findbox41" name="T169" size="20" type="password" value="$õ¼"></div><label for="name" class="col-lg-2 control-label">Exc #41 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #41" id="replacebox41" name="T41" size="20" type="password" value="ଫ୍ର"></div></div><div id="TextBoxDiv42" class="form-group"><label for="name" class="col-lg-2 control-label">Word #42 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #42" id="findbox42" name="T170" size="20" type="password" value="$õÞ¼"></div><label for="name" class="col-lg-2 control-label">Exc #42 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #42" id="replacebox42" name="T42" size="20" type="password" value="ଫ୍ରି"></div></div><div id="TextBoxDiv43" class="form-group"><label for="name" class="col-lg-2 control-label">Word #43 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #43" id="findbox43" name="T171" size="20" type="password" value="Òböþ"></div><label for="name" class="col-lg-2 control-label">Exc #43 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #43" id="replacebox43" name="T43" size="20" type="password" value="ଭ୍ରେ"></div></div><div id="TextBoxDiv44" class="form-group"><label for="name" class="col-lg-2 control-label">Word #44 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #44" id="findbox44" name="T172" size="20" type="password" value="^èà"></div><label for="name" class="col-lg-2 control-label">Exc #44 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #44" id="replacebox44" name="T44" size="20" type="password" value="ର୍ଧ୍ବ"></div></div><div id="TextBoxDiv45" class="form-group"><label for="name" class="col-lg-2 control-label">Word #45 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #45" id="findbox45" name="T173" size="20" type="password" value="wèà"></div><label for="name" class="col-lg-2 control-label">Exc #45 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #45" id="replacebox45" name="T45" size="20" type="password" value="ର୍ଦ୍ଧ୍ବ"></div></div><div id="TextBoxDiv46" class="form-group"><label for="name" class="col-lg-2 control-label">Word #46 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #46" id="findbox46" name="T174" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #46 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #46" id="replacebox46" name="T46" size="20" type="password"></div></div><div id="TextBoxDiv47" class="form-group"><label for="name" class="col-lg-2 control-label">Word #47 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #47" id="findbox47" name="T175" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #47 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #47" id="replacebox47" name="T47" size="20" type="password"></div></div><div id="TextBoxDiv48" class="form-group"><label for="name" class="col-lg-2 control-label">Word #48 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #48" id="findbox48" name="T176" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #48 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #48" id="replacebox48" name="T48" size="20" type="password"></div></div><div id="TextBoxDiv49" class="form-group"><label for="name" class="col-lg-2 control-label">Word #49 :</label><div class="col-lg-4">
+				<input class="form-control input-sm" placeholder="Find #49" id="findbox49" name="T177" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #49 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Replace #49" id="replacebox49" name="T49" size="20" type="password"></div></div><div id="TextBoxDiv50" class="form-group"><label for="name" class="col-lg-2 control-label">Word #50 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #50" id="findbox50" name="T178" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #50 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #50" id="replacebox50" name="T50" size="20" type="password"></div></div><div id="TextBoxDiv51" class="form-group"><label for="name" class="col-lg-2 control-label">Word #51 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #51" id="findbox51" name="T179" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #51 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #51" id="replacebox51" name="T51" size="20" type="password"></div></div><div id="TextBoxDiv52" class="form-group"><label for="name" class="col-lg-2 control-label">Word #52 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #52" id="findbox52" name="T180" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #52 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #52" id="replacebox52" name="T52" size="2-" type="password"></div></div><div id="TextBoxDiv53" class="form-group"><label for="name" class="col-lg-2 control-label">Word #53 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #53" id="findbox53" name="T181" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #53 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #53" id="replacebox53" name="T53" size="20" type="password"></div></div><div id="TextBoxDiv54" class="form-group"><label for="name" class="col-lg-2 control-label">Word #54 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #54" id="findbox54" name="T182" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #54 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #54" id="replacebox54" name="T54" size="20" type="password"></div></div><div id="TextBoxDiv55" class="form-group"><label for="name" class="col-lg-2 control-label">Word #55 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #55" id="findbox55" name="T183" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #55 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #55" id="replacebox55" name="T55" size="20" type="password"></div></div><div id="TextBoxDiv56" class="form-group"><label for="name" class="col-lg-2 control-label">Word #56 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #56" id="findbox56" name="T184" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #56 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #56" id="replacebox56" name="T56" size="20" type="password"></div></div><div id="TextBoxDiv57" class="form-group"><label for="name" class="col-lg-2 control-label">Word #57 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #57" id="findbox57" name="T185" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #57 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #57" id="replacebox57" name="T57" size="20" type="password"></div></div><div id="TextBoxDiv58" class="form-group"><label for="name" class="col-lg-2 control-label">Word #58 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #58" id="findbox58" name="T186" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #58 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #58" id="replacebox58" name="T58" size="20" type="password"></div></div><div id="TextBoxDiv59" class="form-group"><label for="name" class="col-lg-2 control-label">Word #59 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #59" id="findbox59" name="T187" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #59 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #59" id="replacebox59" name="T59" size="20" type="password"></div></div><div id="TextBoxDiv60" class="form-group"><label for="name" class="col-lg-2 control-label">Word #60 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #60" id="findbox60" name="T188" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #60 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #60" id="replacebox60" name="T60" size="20" type="password"></div></div><div id="TextBoxDiv61" class="form-group"><label for="name" class="col-lg-2 control-label">Word #61 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #61" id="findbox61" name="T189" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #61 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #61" id="replacebox61" name="T61" size="20" type="password"></div></div><div id="TextBoxDiv62" class="form-group"><label for="name" class="col-lg-2 control-label">Word #62 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #62" id="findbox62" name="T190" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #62 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #62" id="replacebox62" name="T62" size="20" type="password"></div></div><div id="TextBoxDiv63" class="form-group"><label for="name" class="col-lg-2 control-label">Word #63 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #63" id="findbox63" name="T191" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #63 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #63" id="replacebox63" name="T63" size="20" type="password"></div></div><div id="TextBoxDiv64" class="form-group"><label for="name" class="col-lg-2 control-label">Word #64 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #64" id="findbox64" name="T192" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #64 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #64" id="replacebox64" name="T64" size="20" type="password"></div></div><div id="TextBoxDiv65" class="form-group"><label for="name" class="col-lg-2 control-label">Word #65 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #65" id="findbox65" name="T193" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #65 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #65" id="replacebox65" name="T65" size="20" type="password"></div></div><div id="TextBoxDiv66" class="form-group"><label for="name" class="col-lg-2 control-label">Word #66 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #66" id="findbox66" name="T194" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #66 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #66" id="replacebox66" name="T66" size="20" type="password"></div></div><div id="TextBoxDiv67" class="form-group"><label for="name" class="col-lg-2 control-label">Word #67 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #67" id="findbox67" name="T195" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #67 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #67" id="replacebox67" name="T67" size="20" type="password"></div></div><div id="TextBoxDiv68" class="form-group"><label for="name" class="col-lg-2 control-label">Word #68 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #68" id="findbox68" name="T196" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #68 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #68" id="replacebox68" name="T68" size="20" type="password"></div></div><div id="TextBoxDiv69" class="form-group"><label for="name" class="col-lg-2 control-label">Word #69 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #69" id="findbox69" name="T197" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #69 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #69" id="replacebox69" name="T69" size="20" type="password"></div></div><div id="TextBoxDiv70" class="form-group"><label for="name" class="col-lg-2 control-label">Word #70 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #70" id="findbox70" size="20" name="T198" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #70 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #70" id="replacebox70" name="T70" size="20" type="password"></div></div><div id="TextBoxDiv71" class="form-group"><label for="name" class="col-lg-2 control-label">Word #71 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #71" id="findbox71" name="T199" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #71 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #71" id="replacebox71" name="T71" size="20" type="password"></div></div><div id="TextBoxDiv72" class="form-group"><label for="name" class="col-lg-2 control-label">Word #72 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #72" id="findbox72" name="T200" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #72 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #72" id="replacebox72" name="T72" size="20" type="password"></div></div><div id="TextBoxDiv73" class="form-group"><label for="name" class="col-lg-2 control-label">Word #73 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #73" id="findbox73" name="T201" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #73 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #73" id="replacebox73" name="T73" size="20" type="password"></div></div><div id="TextBoxDiv74" class="form-group"><label for="name" class="col-lg-2 control-label">Word #74 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #74" id="findbox74" name="T202" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #74 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #74" id="replacebox74" name="T74" size="20" type="password"></div></div><div id="TextBoxDiv75" class="form-group"><label for="name" class="col-lg-2 control-label">Word #75 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #75" id="findbox75" name="T203" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #75 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #75" id="replacebox75" name="T75" size="20" type="password"></div></div><div id="TextBoxDiv76" class="form-group"><label for="name" class="col-lg-2 control-label">Word #76 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #76" id="findbox76" name="T204" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #76 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #76" id="replacebox76" name="T76" size="20" type="password"></div></div><div id="TextBoxDiv77" class="form-group"><label for="name" class="col-lg-2 control-label">Word #77 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #77" id="findbox77" name="T205" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #77 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #77" id="replacebox77" name="T77" size="20" type="password"></div></div><div id="TextBoxDiv78" class="form-group"><label for="name" class="col-lg-2 control-label">Word #78 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #78" id="findbox78" name="T206" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #78 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #78" id="replacebox78" name="T78" size="20" type="password"></div></div><div id="TextBoxDiv79" class="form-group"><label for="name" class="col-lg-2 control-label">Word #79 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #79" id="findbox79" name="T207" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #79 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #79" id="replacebox79" name="T79" size="20" type="password"></div></div><div id="TextBoxDiv80" class="form-group"><label for="name" class="col-lg-2 control-label">Word #80 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #80" id="findbox80" name="T208" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #80 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #80" id="replacebox80" name="T80" size="20" type="password"></div></div><div id="TextBoxDiv81" class="form-group"><label for="name" class="col-lg-2 control-label">Word #81 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #81" id="findbox81" name="T209" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #81 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #81" id="replacebox81" name="T81" size="20" type="password"></div></div><div id="TextBoxDiv82" class="form-group"><label for="name" class="col-lg-2 control-label">Word #82 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #82" id="findbox82" name="T210" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #82 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #82" id="replacebox82" name="T82" size="20" type="password"></div></div><div id="TextBoxDiv83" class="form-group"><label for="name" class="col-lg-2 control-label">Word #83 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #83" id="findbox83" name="T211" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #83 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #83" id="replacebox83" name="T83" size="20" type="password"></div></div><div id="TextBoxDiv84" class="form-group"><label for="name" class="col-lg-2 control-label">Word #84 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #84" id="findbox84" name="T212" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #84 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #84" id="replacebox84" name="T84" size="20" type="password"></div></div><div id="TextBoxDiv85" class="form-group"><label for="name" class="col-lg-2 control-label">Word #85 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #85" id="findbox85" name="T213" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #85 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #85" id="replacebox85" name="T85" size="20" type="password"></div></div><div id="TextBoxDiv86" class="form-group"><label for="name" class="col-lg-2 control-label">Word #86 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #86" id="findbox86" name="T214" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #86 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #86" id="replacebox86" name="T86" size="20" type="password"></div></div><div id="TextBoxDiv87" class="form-group"><label for="name" class="col-lg-2 control-label">Word #87 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #87" id="findbox87" name="T215" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #87 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #87" id="replacebox87" name="T87" size="20" type="password"></div></div><div id="TextBoxDiv88" class="form-group"><label for="name" class="col-lg-2 control-label">Word #88 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #88" id="findbox88" name="T216" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #88 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #88" id="replacebox88" name="T88" size="20" type="password"></div></div><div id="TextBoxDiv89" class="form-group"><label for="name" class="col-lg-2 control-label">Word #89 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #89" id="findbox89" name="T217" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #89 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #89" id="replacebox89" name="T89" size="20" type="password"></div></div><div id="TextBoxDiv90" class="form-group"><label for="name" class="col-lg-2 control-label">Word #90 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #90" id="findbox90" name="T218" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #90 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #90" id="replacebox90" name="T90" size="20" type="password"></div></div><div id="TextBoxDiv91" class="form-group"><label for="name" class="col-lg-2 control-label">Word #91 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #91" id="findbox91" name="T219" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #91 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #91" id="replacebox91" name="T91" size="20" type="password"></div></div><div id="TextBoxDiv92" class="form-group"><label for="name" class="col-lg-2 control-label">Word #92 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #92" id="findbox92" name="T220" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #92 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #92" id="replacebox92" size="20" name="T92" type="password"></div></div><div id="TextBoxDiv93" class="form-group"><label for="name" class="col-lg-2 control-label">Word #93 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #93" id="findbox93" name="T221" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #93 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #93" id="replacebox93" name="T93" size="20" type="password"></div></div><div id="TextBoxDiv94" class="form-group"><label for="name" class="col-lg-2 control-label">Word #94 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #94" id="findbox94" name="T222" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #94 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #94" id="replacebox94" name="T94" size="20" type="password"></div></div><div id="TextBoxDiv95" class="form-group"><label for="name" class="col-lg-2 control-label">Word #95 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #95" id="findbox95" name="T223" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #95 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #95" id="replacebox95" name="T95" size="20" type="password"></div></div><div id="TextBoxDiv96" class="form-group"><label for="name" class="col-lg-2 control-label">Word #96 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #96" id="findbox96" name="T224" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #96 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #96" id="replacebox96" name="T96" size="20" type="password"></div></div><div id="TextBoxDiv97" class="form-group"><label for="name" class="col-lg-2 control-label">Word #97 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #97" id="findbox97" name="T225" size="20" type="password"></div><label for="name" class="col-lg-2 control-label">Exc #97 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #97" id="replacebox97" name="T97" size="20" type="password"></div></div><div id="TextBoxDiv98" class="form-group"><label for="name" class="col-lg-2 control-label">Word #98 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #98" id="findbox98" type="password" name="T226" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #98 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #98" id="replacebox98" type="password" name="T98" size="20"></div></div><div id="TextBoxDiv99" class="form-group"><label for="name" class="col-lg-2 control-label">Word #99 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #99" id="findbox99" type="password" name="T227" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #99 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #99" id="replacebox99" type="password" name="T99" size="20"></div></div><div id="TextBoxDiv100" class="form-group"><label for="name" class="col-lg-2 control-label">Word #100 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #100" id="findbox100" type="password" name="T228" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #100 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #100" id="replacebox100" type="password" name="T100" size="20"></div></div><div id="TextBoxDiv101" class="form-group"><label for="name" class="col-lg-2 control-label">Word #101 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #101" id="findbox101" type="password" name="T229" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #101 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #101" id="replacebox101" type="password" name="T101" size="20"></div></div><div id="TextBoxDiv102" class="form-group"><label for="name" class="col-lg-2 control-label">Word #102 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #102" id="findbox102" type="password" name="T230" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #102 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #102" id="replacebox102" type="password" name="T102" size="20"></div></div><div id="TextBoxDiv103" class="form-group"><label for="name" class="col-lg-2 control-label">Word #103 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #103" id="findbox103" type="password" name="T231" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #103 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #103" id="replacebox103" type="password" name="T103" size="20"></div></div><div id="TextBoxDiv104" class="form-group"><label for="name" class="col-lg-2 control-label">Word #104 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #104" id="findbox104" type="password" name="T232" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #104 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #104" id="replacebox104" type="password" name="T104" size="20"></div></div><div id="TextBoxDiv105" class="form-group"><label for="name" class="col-lg-2 control-label">Word #105 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #105" id="findbox105" type="password" name="T233" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #105 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #105" id="replacebox105" type="password" name="T105" size="20"></div></div><div id="TextBoxDiv106" class="form-group"><label for="name" class="col-lg-2 control-label">Word #106 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #106" id="findbox106" type="password" name="T234" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #106 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #106" id="replacebox106" type="password" name="T106" size="20"></div></div><div id="TextBoxDiv107" class="form-group"><label for="name" class="col-lg-2 control-label">Word #107 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #107" id="findbox107" type="password" name="T235" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #107 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #107" id="replacebox107" type="password" name="T107" size="20"></div></div><div id="TextBoxDiv108" class="form-group"><label for="name" class="col-lg-2 control-label">Word #108 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #108" id="findbox108" type="password" name="T236" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #108 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #108" id="replacebox108" type="password" name="T108" size="20"></div></div><div id="TextBoxDiv109" class="form-group"><label for="name" class="col-lg-2 control-label">Word #109 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #109" id="findbox109" type="password" name="T237" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #109 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #109" id="replacebox109" type="password" name="T109" size="20"></div></div><div id="TextBoxDiv110" class="form-group"><label for="name" class="col-lg-2 control-label">Word #110 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #110" id="findbox110" type="password" name="T134" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #110 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #110" id="replacebox110" type="password" name="T135" size="20"></div></div><div id="TextBoxDiv111" class="form-group"><label for="name" class="col-lg-2 control-label">Word #111 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #111" id="findbox111" type="password" name="T238" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #111 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #111" id="replacebox111" type="password" name="T111" size="20"></div></div><div id="TextBoxDiv112" class="form-group"><label for="name" class="col-lg-2 control-label">Word #112 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #112" id="findbox112" type="password" name="T239" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #112 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #112" id="replacebox112" type="password" name="T112" size="20"></div></div><div id="TextBoxDiv113" class="form-group"><label for="name" class="col-lg-2 control-label">Word #113 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #113" id="findbox113" type="password" name="T240" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #113 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #113" id="replacebox113" type="password" name="T113" size="20"></div></div><div id="TextBoxDiv114" class="form-group"><label for="name" class="col-lg-2 control-label">Word #114 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #114" id="findbox114" type="password" name="T241" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #114 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #114" id="replacebox114" type="password" name="T114" size="20"></div></div><div id="TextBoxDiv115" class="form-group"><label for="name" class="col-lg-2 control-label">Word #115 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #115" id="findbox115" type="password" name="T242" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #115 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #115" id="replacebox115" type="password" name="T115" size="20"></div></div><div id="TextBoxDiv116" class="form-group"><label for="name" class="col-lg-2 control-label">Word #116 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #116" id="findbox116" type="password" name="T243" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #116 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #116" id="replacebox116" type="password" name="T116" size="20"></div></div><div id="TextBoxDiv117" class="form-group"><label for="name" class="col-lg-2 control-label">Word #117 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #117" id="findbox117" type="password" name="T244" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #117 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #117" id="replacebox117" type="password" name="T117" size="20"></div></div><div id="TextBoxDiv118" class="form-group"><label for="name" class="col-lg-2 control-label">Word #118 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #118" id="findbox118" type="password" name="T245" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #118 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #118" id="replacebox118" type="password" name="T118" size="20"></div></div><div id="TextBoxDiv119" class="form-group"><label for="name" class="col-lg-2 control-label">Word #119 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #119" id="findbox119" type="password" name="T246" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #119 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #119" id="replacebox119" type="password" name="T119" size="20"></div></div><div id="TextBoxDiv120" class="form-group"><label for="name" class="col-lg-2 control-label">Word #120 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #120" id="findbox120" type="password" name="T247" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #120 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #120" id="replacebox120" type="password" name="T120" size="20"></div></div><div id="TextBoxDiv121" class="form-group"><label for="name" class="col-lg-2 control-label">Word #121 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #121" id="findbox121" type="password" name="T248" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #121 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #121" id="replacebox121" type="password" name="T121" size="20"></div></div><div id="TextBoxDiv122" class="form-group"><label for="name" class="col-lg-2 control-label">Word #122 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #122" id="findbox122" type="password" name="T249" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #122 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #122" id="replacebox122" type="password" name="T122" size="20"></div></div><div id="TextBoxDiv123" class="form-group"><label for="name" class="col-lg-2 control-label">Word #123 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #123" id="findbox123" type="password" name="T250" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #123 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #123" id="replacebox123" type="password" name="T123" size="20"></div></div><div id="TextBoxDiv124" class="form-group"><label for="name" class="col-lg-2 control-label">Word #124 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #124" id="findbox124" type="password" name="T251" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #124 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #124" id="replacebox124" type="password" name="T124" size="20"></div></div><div id="TextBoxDiv125" class="form-group"><label for="name" class="col-lg-2 control-label">Word #125 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #125" id="findbox125" type="password" name="T252" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #125 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #125" id="replacebox125" type="password" name="T125" size="20"></div></div><div id="TextBoxDiv126" class="form-group"><label for="name" class="col-lg-2 control-label">Word #126 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #126" id="findbox126" type="password" name="T253" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #126 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #126" id="replacebox126" type="password" name="T126" size="20"></div></div><div id="TextBoxDiv127" class="form-group"><label for="name" class="col-lg-2 control-label">Word #127 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #127" id="findbox127" type="password" name="T254" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #127 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #127" id="replacebox127" type="password" name="T127" size="20"></div></div><div id="TextBoxDiv128" class="form-group"><label for="name" class="col-lg-2 control-label">Word #128 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #128" id="findbox128" type="password" name="T255" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #128 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #128" id="replacebox128" type="password" name="T128" size="20"></div></div><div id="TextBoxDiv129" class="form-group"><label for="name" class="col-lg-2 control-label">Word #129 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #129" id="findbox129" type="password" name="T256" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #129 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #129" id="replacebox129" type="password" name="T129" size="20"></div></div><div id="TextBoxDiv130" class="form-group"><label for="name" class="col-lg-2 control-label">Word #130 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #130" id="findbox130" type="password" name="T257" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #130 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #130" id="replacebox130" type="password" name="T130" size="20"></div></div><div id="TextBoxDiv131" class="form-group"><label for="name" class="col-lg-2 control-label">Word #131 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #131" id="findbox131" type="password" name="T258" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #131 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #131" id="replacebox131" type="password" name="T131" size="20"></div></div><div id="TextBoxDiv132" class="form-group"><label for="name" class="col-lg-2 control-label">Word #132 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #132" id="findbox132" type="password" name="T259" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #132 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #132" id="replacebox132" type="password" name="T132" size="20"></div></div><div id="TextBoxDiv133" class="form-group"><label for="name" class="col-lg-2 control-label">Word #133 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #133" id="findbox133" type="password" name="T260" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #133 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #133" id="replacebox133" type="password" name="T133" size="20"></div></div><div id="TextBoxDiv134" class="form-group"><label for="name" class="col-lg-2 control-label">Word #134 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #134" id="findbox134" type="password" name="T261" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #134 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #134" id="replacebox134" type="password" name="T262" size="20"></div></div><div id="TextBoxDiv135" class="form-group"><label for="name" class="col-lg-2 control-label">Word #135 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #135" id="findbox135" type="password" name="T263" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #135 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #135" id="replacebox135" type="password" name="T264" size="20"></div></div><div id="TextBoxDiv136" class="form-group"><label for="name" class="col-lg-2 control-label">Word #136 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #136" id="findbox136" type="password" name="T265" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #136 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #136" id="replacebox136" type="password" name="T266" size="20"></div></div><div id="TextBoxDiv137" class="form-group"><label for="name" class="col-lg-2 control-label">Word #137 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #137" id="findbox137" type="password" name="T267" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #137 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #137" id="replacebox137" type="password" name="T268" size="20"></div></div><div id="TextBoxDiv138" class="form-group"><label for="name" class="col-lg-2 control-label">Word #138 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #138" id="findbox138" type="password" name="T269" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #138 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #138" id="replacebox138" type="password" name="T270" size="20"></div></div><div id="TextBoxDiv139" class="form-group"><label for="name" class="col-lg-2 control-label">Word #139 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #139" id="findbox139" type="password" name="T271" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #139 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #139" id="replacebox139" type="password" name="T272" size="20"></div></div><div id="TextBoxDiv140" class="form-group"><label for="name" class="col-lg-2 control-label">Word #140 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #140" id="findbox140" type="password" name="T273" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #140 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #140" id="replacebox140" type="password" name="T274" size="20"></div></div><div id="TextBoxDiv141" class="form-group"><label for="name" class="col-lg-2 control-label">Word #141 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #141" id="findbox141" type="password" name="T275" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #141 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #141" id="replacebox141" type="password" name="T276" size="20"></div></div><div id="TextBoxDiv142" class="form-group"><label for="name" class="col-lg-2 control-label">Word #142 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #142" id="findbox142" type="password" name="T277" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #142 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #142" id="replacebox142" type="password" name="T278" size="20"></div></div><div id="TextBoxDiv143" class="form-group"><label for="name" class="col-lg-2 control-label">Word #143 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #143" id="findbox143" type="password" name="T279" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #143 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #143" id="replacebox143" type="password" name="T280" size="20"></div></div><div id="TextBoxDiv144" class="form-group"><label for="name" class="col-lg-2 control-label">Word #144 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #144" id="findbox144" type="password" name="T281" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #144 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #144" id="replacebox144" type="password" name="T282" size="20"></div></div><div id="TextBoxDiv145" class="form-group"><label for="name" class="col-lg-2 control-label">Word #145 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #145" id="findbox145" type="password" name="T283" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #145 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #145" id="replacebox145" type="password" name="T284" size="20"></div></div><div id="TextBoxDiv146" class="form-group"><label for="name" class="col-lg-2 control-label">Word #146 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #146" id="findbox146" type="password" name="T285" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #146 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #146" id="replacebox146" type="password" name="T286" size="20"></div></div><div id="TextBoxDiv147" class="form-group"><label for="name" class="col-lg-2 control-label">Word #147 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #147" id="findbox147" type="password" name="T287" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #147 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #147" id="replacebox147" type="password" name="T288" size="20"></div></div><div id="TextBoxDiv148" class="form-group"><label for="name" class="col-lg-2 control-label">Word #148 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #148" id="findbox148" type="password" name="T289" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #148 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #148" id="replacebox148" type="password" name="T290" size="20"></div></div><div id="TextBoxDiv149" class="form-group"><label for="name" class="col-lg-2 control-label">Word #149 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #149" id="findbox149" type="password" name="T291" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #149 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #149" id="replacebox149" type="password" name="T292" size="20"></div></div><div id="TextBoxDiv150" class="form-group"><label for="name" class="col-lg-2 control-label">Word #150 :</label><div class="col-lg-4">
+					<input class="form-control input-sm" placeholder="Find #150" id="findbox150" type="password" name="T293" size="20"></div><label for="name" class="col-lg-2 control-label">Exc #150 :</label><div class="col-lg-4">
+						<input class="form-control input-sm" placeholder="Replace #150" id="replacebox150" type="password" name="T294" size="20"></div></div></div>
+			<div class="row">
+					<div class="col-lg-4"><button type="button" id="addbtn" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> 
+						Add Element</button><br></div>
+					<div class="col-lg-4"><button type="button" id="repbtn" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> 
+						Remove Element</button><br></div>
+					<div class="col-lg-4"><button type="reset" id="reset" class="btn btn-default btn-block"><span class="glyphicon glyphicon-repeat"></span> 
+						Reset</button></div>
+			</div>
+				<b><font color="#0000FF"> &nbsp;</font></b></form>
+
+
+		</div>
+		<div class="col-lg-4">
+<div class="main">
+<h4 id="counteroutput" align="center">Words: <span class="outputval">0</span> Chars: <span class="outputval">0</span></h4>
+&nbsp;<form name="form1" style="background-color: #C0C0C0">
+<div class="panel-heading">
+		<font color="#0000FF"><b>Unicode Text </b></font></div>
+<table id="table1" width="45%" border="0">
+	<tbody><tr>
+		<td valign="top" align="center">
+<font size="3" face="DataSoft_Uniweb">
+		<textarea style="width: 54; height: 35; font-family:Samaja 01; font-size:10; margin-left:0.4em" rows="10%" cols="38%" name="Unicodefont" id="Unicode"></textarea></font></td>
+	</tr>
+</tbody></table>
+<p align="center">
+
+</p>
+
+<style>
+textarea {
+  width: 348px;
+  height: 335px;
+  margin-left: 0.4em;
+}
+
+.button {
+  background-color: #008CBA; /* Blue */
+  border: none;
+  color: white;
+  padding: 11px 48px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8%;
+}
+
+.button2 {background-color:  #138d75}.button3 {background-color:  #ba4a00}.button5 {background-color: #555555;}</style>
+
+</form>
+</div>
+
+	
+
+<div class="ta-bottom-toolbar" align="center">
+<div style="display: inline-block; margin: 0px 10px 0px 0px !important; color: #000;">
+	<button id="copy-button" class="">Select Text &amp; Copy</button>
+
+<script>
+    var input  = document.getElementById("Unicode");
+    var button = document.getElementById("converter");
+    var button = document.getElementById("copy-button");
+
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        input.select();
+        document.execCommand("copy");
+    });
+</script>
+<p>
+<label style="margin:0">
+
+&nbsp;<input class="filename" id="text-filename" placeholder="enter file name" name="T110" size="30"></label>
+<a href="data:application/plain;charset=utf-8,%E0%B0%85%E0%B0%9C%E0%B1%8D%E0%B0%B8%E0%B1%8D%E0%B0%9C%E0%B1%8D%E0%B0%A6%E0%B1%8D%E0%B0%AB%E0%B1%8D%20%E0%B0%9C%E0%B1%87%E0%B0%B8%E0%B1%8D%E0%B0%9C%E0%B1%8D%E0%B0%B8%E0%B1%8D%E0%B0%9C%E0%B1%8D%20%E0%B0%B8%E0%B0%BF%E0%B0%9C%E0%B1%87%E0%B0%B8%E0%B1%8D%E0%B0%9C%E0%B1%8D%E0%B0%B8%E0%B1%8D%E0%B0%9C%E0%B1%8D%20" download="Telugu-text.doc" id="btnExport1" class="btn btn-success" target="_blank" onclick="saveText();">Save File</a>
+</p></div>
+</div>
+&nbsp;<a href="https://font-exchange.github.io/Odia-Unicode/unitoak/"><img border="0" src="https://expoodisha.com/Software/FExchange/FExchange_files/unitoakimage.jpg" width="364" height="224"></a><p>&nbsp;</p>
+<p>
+
+
+		 <iframe src="./Gist_files/Colors CMYK.html" name="C1" style="border-style: dotted; border-width: 1px" width="365" height="842"></iframe> 
+<p>&nbsp;</p></div>
+	</div>
+</div>
+
+<footer>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-4">
+			<p class="muted-text small"><br><b>Script &amp; Design :</b> Manas 
+			Ranjan Swain</p>
+		</div>
+	</div>
+</div>
+
+&nbsp;<script>
+;(function(){
+	var wordcounter = document.getElementById('uInput')
+	var counteroutput = document.getElementById('counteroutput')
+	var counteroutputFoot = document.getElementById('counteroutput-foot')
+	var words, chars
+
+	function countemwords(){
+		words = (wordcounter.value == '')? 0 : wordcounter.value.split(' ').length
+		chars = wordcounter.value.length
+		counteroutput.innerHTML = 'Words: <span class="outputval">' + words + '</span> Chars: <span class="outputval">' + chars + '</span>'
+		counteroutputFoot.innerHTML = '<b>Words: </b>' + words + '<b>Chars: </b>' + chars
+	}
+
+	wordcounter.addEventListener('input', function(e){
+		countemwords()
+	}, false)
+
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+		countemwords()
+  }, false)
+
+  window.addEventListener("load", function(event) {
+		countemwords()
+  }, false)
+	
+})()
+
+</script>
+<script>
+var xbif = true;
+function showhidetranslit(el){
+var e=document.getElementById(el);
+if(e.style.display=="block"){
+e.style.display="none";}
+else{e.style.display="block"
+e.focus();}}
+function corrections(){
+txt = document.getElementById("transl2").value;
+document.getElementById("transl2").value = "";
+txt = txt.replace(/ \|/g, "|");
+txt = txt.replace(/\|/g, "।");
+//txt = txt.replace(/\r?\n/g, \r\n);
+document.getElementById("transl2").value = txt;
+alert("Corrections have been made.");
+}
+function saveText(){
+if(xbif){
+txt = document.getElementById("Unicode").value;
+filename = document.getElementById("text-filename").value;
+txtData = 'data:application/plain;charset=utf-8,' + encodeURIComponent(txt);
+if(filename ==''){
+filename = 'Odia-text';}
+if(filename.indexOf(".") != -1){
+filename = filename.split(".")[0];}
+document.getElementById('btnExport1').download=filename+".doc";
+document.getElementById('btnExport1').href=txtData;
+}
+}
+function showhide(el){
+var e=document.getElementById(el);
+if(e.style.display=="block"){
+e.style.display="none";}
+else{
+e.style.display="block"
+e.focus();}
+}
+</script>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+  </div></div></div></div></body></html>
