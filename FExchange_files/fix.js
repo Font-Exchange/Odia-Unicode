@@ -8,7 +8,6 @@ textarea.val(textarea.val().replace(/ସ୍ଵ/g,"ସ୍ବ"));
 textarea.val(textarea.val().replace(/ଵ/g,"ବ"));
 textarea.val(textarea.val().replace(/ଡ଼/g,"ଡ଼"));    
 textarea.val(textarea.val().replace(/ ଜ୍ଝ/g,"।"));
-textarea.val(textarea.val().replace(/ କ୍ଷ/g,"।"));
 
 
 
