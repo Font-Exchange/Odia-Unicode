@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Weights & Measures Converter</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","https://expoodisha.com/Software/spellchecker/livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+
+
+<link rel="stylesheet" href="../../spellchecker/content/bootstrapc.css">
+<link rel="stylesheet" href="../../spellchecker/content/stylec.css">
+
+
+
+<style>
+<!--
+.curtab {
+	background-Color: #FFFFFF;
+	cursor: hand;
+	border-bottom: 1 solid #ffffff;
+	color: #07519A;
+	font-size:9pt;
+	font-weight: bold;
+}
+
+.notab {
+	background-Color: #EBF3FB;
+	cursor: hand;
+	color: #07519A;
+	font-size:9pt;
+	font-weight: bold;
+}
+.tb {font-family:'arial,verdana,arial,Simsun'; font-size:9pt;}
+-->
+</style>
+
+<script type=text/javascript>
+function tabit(btn, page)
+{
+	for(i=0;i<8;i++)
+	{
+		if(i == page)
+		{
+			//btn.className='curtab';
+			document.getElementById("tab"+i).className='curtab';
+			document.getElementById("page"+i).style.display = "";
+		}
+		else
+		{
+			//btn.className='notab';
+			document.getElementById("tab"+i).className='notab';
+			document.getElementById("page"+i).style.display = "none";
+		}
+	}
+		
+//	document.getElementById(tabName+"_div_"+id).style.display = "block";
+//	btn.style.backgroundColor = "#FFFEF2";
+//	btn.style.borderBottomColor = "#FFFEF2";
+//	btn.style.cursor = "default";
+}
+</script>
+</head>
+
+<BODY bgcolor="#EAF0F8" topmargin="10" leftmargin="10" rightmargin="10" bottommargin="10">
+<script language="javascript" type="text/javascript">
+
+function checkNum(str) {
+  for (var i=0; i<str.length; i++)
+  {
+    var ch = str.substring(i, i + 1)
+    if (ch!="." && ch!="+" && ch!="-" && ch!="e" && ch!="E" && (ch < "0" || ch > "9"))
+    {
+      alert("Please enter a valid numerical value");
+      return false;
+    }
+  }
+  return true
+}
+
+function normalize(what,digits) 
+{
+  var str=""+what;
+  var pp=Math.max(str.lastIndexOf("+"),str.lastIndexOf("-"));
+  var idot=str.indexOf(".");
+  if (idot>=1)
+  {
+    var ee=(pp>0)?str.substring(pp-1,str.length):"";
+    digits+=idot;
+    if (digits>=str.length)
+      return str;
+    if (pp>0 && digits>=pp)
+      digits-=pp;
+    var c=eval(str.charAt(digits));
+    var ipos=digits-1;
+    if (c>=5)
+    {
+      while (str.charAt(ipos)=="9")
+        ipos--;
+      if (str.charAt(ipos)==".")
+      {
+        var nc=eval(str.substring(0,idot))+1;
+        if (nc==10 && ee.length>0)
+        {
+          nc=1;
+          ee="e"+(eval(ee.substring(1,ee.length))+1);
+        }
+        return ""+nc+ee;
+      }
+      return str.substring(0,ipos)+(eval(str.charAt(ipos))+1)+ee;
+    }
+    else
+      var ret=str.substring(0,digits)+ee;
+
+    for (var i=0; i<ret.length; i++)
+        if (ret.charAt(i)>"0" && ret.charAt(i)<="9")
+          return ret;
+    return str;
+  }
+  return str;
+}
+
+function compute(obj,val,data) {
+  if (obj[val].value)
+  {
+    var uval=0;
+    uval = obj[val].value*data[val];
+    if( (uval >= 0) && (obj[val].value.indexOf("-") != -1) )
+    {
+      uval = -uval;    
+    }
+    for (var i in data)
+      obj[i].value=normalize(uval/data[i],8);
+  }
+}
+
+function resetValues(form,data) {   
+    for (var i in data)
+      form[i].value="";
+}
+
+// 长度换算器
+function LENGTH_MEASURES() {
+  this.mKilometer = 1000
+  this.mMeter = 1
+  this.mDecimeter = 0.1
+  this.mCentimeter = 0.01
+  this.mMillimeter = 0.001
+  this.mMicronmeter = 0.000001
+  this.mLimeter = 500
+  this.mZhangmeter = 10 / 3
+  this.mChimeter = 1 / 3
+  this.mCunmeter = 1 / 30
+  this.mFenmeter = 1 / 300
+  this.mmLimeter = 1 / 3000
+  this.engFoot = 0.3048
+  this.engMile = 5280 * this.engFoot
+  this.engFurlong = 660 * this.engFoot
+  this.engYard = 3 * this.engFoot
+  this.engInch = this.engFoot / 12
+  this.engMil = this.engFoot / 12000
+  this.nautMile = 1852
+  this.nautFathom = 6 * this.engFoot
+}
+
+var length_data = new LENGTH_MEASURES();
+
+// 重量换算器 
+function WEIGHT_MEASURES() {
+  this.mTon = 1000
+  this.mKilogram = 1
+  this.mGram = 0.001
+  this.mMilligram = 0.000001
+  this.cJin = 0.5
+  this.cDan = 50
+  this.cLiang = 0.05
+  this.cQian = 0.005
+  this.avdpPound = 0.45359237
+  this.briTon = 2240 * this.avdpPound
+  this.usTon = 2000 * this.avdpPound
+  this.briCWT = 112 * this.avdpPound
+  this.usCWT = 100 * this.avdpPound
+  this.briStone = 14 * this.avdpPound     
+  this.avdpOunce = this.avdpPound / 16
+  this.avdpDram= this.avdpPound / 256
+  this.avdpGrain = this.avdpPound / 7000
+  this.troyPound = 5760 * this.avdpGrain
+  this.troyOunce = 480 * this.avdpGrain
+  this.troyDWT = 24 * this.avdpGrain
+  this.troyGrain = this.avdpGrain
+}
+
+var weight_data = new WEIGHT_MEASURES();
+
+// 面积换算器
+function AREA_MEASURES()              
+{
+  this.mSquare_kilometer = (1000 * 1000)
+  this.mHectare = (100 * 100)
+  this.mSquare_meter = 1
+  this.mAre = ((10000/15) * this.mSquare_meter)
+  this.mSquare_decimeter = (0.1 * 0.1)
+  this.mSquare_centimeter = (0.01 * 0.01)
+  this.mSquare_millimeter = (0.001 * 0.001)
+  this.engSquare_foot = (0.3048 * 0.3048)
+  this.engSquare_yard = (3 * 3 * this.engSquare_foot)
+  this.usSquare_rod = (16.5 *16.5 * this.engSquare_foot)
+  this.engAcre = 160 * this.usSquare_rod
+  this.engSquare_mile = (5280 *5280 * this.engSquare_foot)
+  this.engSquare_inch = (this.engSquare_foot / (12 * 12))
+}
+
+var area_data = new AREA_MEASURES();
+
+// 体积和容量换算器 
+function VOL_MEASURES() {
+  this.mCubic_meter = 1000
+  this.mHectoliter = 100
+  this.mDekaliter = 10
+  this.mLiter = 1
+  this.mDeciliter = 0.1
+  this.mCentiliter = 0.01
+  this.mMilliliter = 0.001
+  this.mCubic_millimeter = 0.000001
+  this.mcTable_spoon= 0.015
+  this.mcTea_spoon= 0.005
+  this.uscCubic_inch = 0.016387064
+  this.uscAcre_foot = 43560 * 1728 * this.uscCubic_inch
+  this.uscCubic_yard = 27 * 1728 * this.uscCubic_inch
+  this.uscCubic_foot = 1728 * this.uscCubic_inch
+  this.uslGallon = 231 * this.uscCubic_inch
+  this.uslBarrel = 42 * this.uslGallon
+  this.uslQuart =  this.uslGallon / 4
+  this.uslPint =  this.uslGallon / 8
+  this.uslGill =  this.uslGallon / 32
+  this.uslFluid_ounce = this.uslGallon / 128
+  this.uslFluid_dram =  this.uslGallon / 1024
+  this.uslMinim = this.uslFluid_ounce / 61440
+  this.usdBarrel = 7056 * this.uscCubic_inch
+  this.usdBushel = 2150.42 * this.uscCubic_inch
+  this.usdPeck = this.usdBushel / 4
+  this.usdQuart = this.usdBushel / 32
+  this.usdPint = this.usdBushel / 64
+  this.uscCup = 8 * this.uslFluid_ounce
+  this.uscTable_spoon = this.uslFluid_ounce / 2
+  this.uscTea_spoon = this.uslFluid_ounce / 6
+  this.briGallon = 4.54609
+  this.briBarrel = 36 * this.briGallon
+  this.briBushel = 8  * this.briGallon
+  this.briPint = this.briGallon / 8
+  this.briFluid_ounce = this.briGallon / 160
+}
+
+var vol_data = new VOL_MEASURES();
+
+// 功率换算器 
+function POWER_MEASURES() {
+  this.Watt = 0.001
+  this.Kilowatt = 1
+  this.Horsepower = 0.745712172
+  this.mHorsepower = 0.7352941
+  this.kgms = 0.0098039215
+  this.kcals = 4.1841004
+  this.Btus = 1.05507491
+  this.ftlbs = 0.0013557483731
+  this.Js = 0.001
+  this.Nms = 0.001
+}
+
+var power_data = new POWER_MEASURES();
+
+// 功、能和热量计算器
+function HEAT_MEASURES() {
+  this.Joule = 1
+  this.Kgm = 9.80392157
+  this.Psh = 2647603.9184538
+  this.Hph = 2684563.7583893
+  this.Kwh = 3599712.023038157
+  this.Kcal = 4185.851820846
+  this.Btu = 1055.0749103
+  this.Ftlb = 1.3557483731
+}
+
+var heat_data = new HEAT_MEASURES();
+
+// 压力计算器
+function PRESS_MEASURES() {
+  this.mKilopascal = 1000
+  this.mHectopascal = 100
+  this.mPascal = 1
+  this.mBar = 100000
+  this.mMillibar = 100
+  this.mAtm = 101325
+  this.mMillimeter_Hg = this.mAtm / 760
+  this.engInch_Hg = 25.4 * this.mMillimeter_Hg
+  this.engPound_sq_inch = 6894.757 
+  this.engPound_sq_foot = this.engPound_sq_inch / 144
+  this.xpressKg_sq_cm = 98066.5
+  this.xpressKg_sq_m = 9.80665
+  this.mmmH2O = 9.80665
+}
+
+var press_data = new PRESS_MEASURES();
+
+// 温度计算器
+function computeTempC(obj) {
+  var tempC = parseFloat(obj.tempCelsius.value)
+  if( (tempC >= 0) && (obj.tempCelsius.value.indexOf("-") != -1) ) {
+    tempC = -tempC;
+  }
+  if(!(tempC < -273.15) ) {
+    var tempK = tempC + 273.15
+    var tempF = 32 + (tempC * 9 / 5)
+    var tempRa = tempK*1.8
+    var tempRe = tempC/1.25
+    obj.tempKelvin.value = tempK
+    obj.tempFahr.value = tempF
+    obj.tempRankine.value = tempRa
+    obj.tempReaumur.value = tempRe
+  } else {
+    obj.tempKelvin.value = "ERROR"
+    obj.tempFahr.value = "ERROR"
+    obj.tempRankine.value = "ERROR"
+    obj.tempReaumur.value = "ERROR"
+  }
+}
+
+function computeTempF(obj) {
+  var tempF = parseFloat(obj.tempFahr.value)
+  if( (tempF >= 0) && (obj.tempFahr.value.indexOf("-") != -1) ) tempF = -tempF;
+   if(!(tempF < -459.666666) ) {
+    var tempC = (tempF - 32) * 5 / 9
+    var tempK = tempC + 273.15
+    var tempRa = tempK*1.8
+    var tempRe = tempC/1.25
+    obj.tempCelsius.value = tempC
+    obj.tempKelvin.value = tempK
+    obj.tempRankine.value = tempRa
+    obj.tempReaumur.value = tempRe
+  } else  {
+    obj.tempCelsius.value = "ERROR"
+    obj.tempKelvin.value = "ERROR"
+    obj.tempRankine.value = "ERROR"
+    obj.tempReaumur.value = "ERROR"
+  }
+}
+
+function computeTempK(obj) {
+  var tempK = parseFloat(obj.tempKelvin.value)
+  if( (tempK >= 0) && (obj.tempKelvin.value.indexOf("-") != -1) ) {
+    tempK = -tempK;
+  }
+  if(!(tempK < 0) ) {
+    var tempC = tempK - 273.15
+    var tempF = 32 + (tempC * 9 / 5)
+    var tempRa = tempK*1.8
+    var tempRe = tempC/1.25
+    obj.tempCelsius.value = tempC
+    obj.tempFahr.value = tempF
+    obj.tempRankine.value = tempRa
+    obj.tempReaumur.value = tempRe
+  } else {
+    obj.tempCelsius.value = "ERROR"
+    obj.tempFahr.value = "ERROR"
+    obj.tempRankine.value = "ERROR"
+    obj.tempReaumur.value = "ERROR"
+  }
+}
+function computeTempRa(obj) {
+  var tempRa = parseFloat(obj.tempRankine.value)
+  if( (tempRa >= 0) && (obj.tempRankine.value.indexOf("-") != -1) ) {
+    tempRa = -tempRa;
+  }
+  if(!(tempRa < 0) ) {
+    var tempK = tempRa/1.8
+    var tempC = tempK  - 273.15
+    var tempF = 32 + (tempC * 9 / 5)
+    var tempRe = tempC/1.25
+    obj.tempCelsius.value = tempC
+    obj.tempFahr.value = tempF
+    obj.tempKelvin.value = tempK
+    obj.tempReaumur.value = tempRe
+  } else {
+    obj.tempCelsius.value = "ERROR"
+    obj.tempFahr.value = "ERROR"
+    obj.tempKelvin.value = "ERROR"
+    obj.tempReaumur.value = "ERROR"
+  }
+}
+function computeTempRe(obj) {
+  var tempRe = parseFloat(obj.tempReaumur.value)
+  if( (tempRe >= 0) && (obj.tempReaumur.value.indexOf("-") != -1) ) {
+    tempRe = -tempRe;
+  }
+  if(!(tempRe < -218.5199999999) ) {
+    var tempC = tempRe*1.25
+    var tempK = tempC + 273.15
+    var tempF = 32 + (tempC * 9 / 5)
+    var tempRa = tempK*1.8
+    obj.tempCelsius.value = tempC
+    obj.tempFahr.value = tempF
+    obj.tempKelvin.value = tempK
+    obj.tempRankine.value = tempRa
+  } else {
+    obj.tempCelsius.value = "ERROR"
+    obj.tempFahr.value = "ERROR"
+    obj.tempKelvin.value = "ERROR"
+    obj.tempRankine.value = "ERROR"
+  }
+}
+
+function resetTempRe(form) {
+  form.tempCelsius.value = ""
+  form.tempKelvin.value = ""
+  form.tempFahr.value = ""
+  form.tempRankine.value = ""
+  form.tempReaumur.value = ""
+}
+
+</script>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mshadow py-0 mb-4">
+<div class="container">
+	<a class="navbar-brand pr-5" href="">
+	<img loading="lazy" src="../../Users/shrim/Downloads/spellchecker-main(2)/spellchecker-main/dynamic_files/spell_logo.png" alt="" title="" width="267" height="50"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item pr-2">
+			<a class="nav-link text-dark" href="https://font-exchange.github.io/spellchecker/"><i class="fas fa-home"></i> 
+			Home <span class="sr-only">(current)</span></a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/dynamic.htm">
+			Dynamic Spell</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/Odia-Unicode/components/components.htm">
+			Components</a></li>
+			<li class="nav-item dropdown pr-2">
+				<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/contact.htm"><i class="fas fa-envelope"></i> 
+				Contact</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/help.htm">Help</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary">
+			Search&gt;&gt;</a></li>
+		</ul>
+		<form class="form-inline my-4 my-lg-0" role="search" name="search" id="search" method="get" action="/search/">
+			<div class="input-group">
+				<input type="text" class="form-control" onkeyup="showResult(this.value)" name="T49" size="20">  
+			<div id="livesearch"></div>
+				
+				<div class="input-group-append">&nbsp;</div>
+			</div>
+		</form>
+	</div>
+</div>
+</nav>
+
+<div class="container" style="height: auto !important;">
+	<div class="row" style="height: auto !important;">
+		<div class="col-sm-8">
+			<h1><font size="4" color="#6699FF">Weights &amp; Measures Converter :</font></h1>
+<div class="card mb-4">
+	
+
+</head>
+
+<BODY bgcolor="#EAF0F8" topmargin="10" leftmargin="10" rightmargin="10" bottommargin="10">
+<div align="right" style="font-size: 8pt; line-height:normal; margin-bottom: 2">
+	&nbsp;</div>
+
+<div id="srctime">
+<table style="font-family:'Tahoma, Arial'; font-size:10pt" border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#AACCEE" style="border-collapse: collapse">
+	<tr>
+		<td id="tab0" width="12.5%" align="center" onclick="tabit(this, 0)" class="curtab">Weight</td>
+		<td id="tab1" width="12.5%" align="center" onclick="tabit(this, 1)" class="notab">Length</td>
+		<td id="tab2" width="12.5%" align="center" onclick="tabit(this, 2)" class="notab">Area</td>
+		<td id="tab3" width="12.5%" align="center" onclick="tabit(this, 3)" class="notab">Volume</td>
+		<td id="tab4" width="12.5%" align="center" onclick="tabit(this, 4)" class="notab">Temperature</td>
+		<td id="tab5" width="12.5%" align="center" onclick="tabit(this, 5)" class="notab">Power</td>
+		<td id="tab6" width="12.5%" align="center" onclick="tabit(this, 6)" class="notab">Energy</td>
+		<td id="tab7" width="12.5%" align="center" onclick="tabit(this, 7)" class="notab">Pressure</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="8" bgcolor="#FFFFFF" width="100%" style="padding: 10; font-family:arial,verdana,arial,Simsun; font-size:9pt">
+			<table id="page0" class="tb" style="display:" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width=100% align=center bgColor=#cccccc border=0>
+			  <tbody>
+			  <tr bgcolor="ffffff">
+			    <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+			      <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+			        <tbody>
+			       <form action="">
+			        <tr height=10>
+						<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+			            <tr>
+			              <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Ton</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=mTon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(mTon.value)) compute(this.form,mTon.name,weight_data)" type=button value="Convert" name=mTon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilogram<br/><font style="font-size:8pt;">(kg)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=mKilogram size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(mKilogram.value)) compute(this.form,mKilogram.name,weight_data)" type=button value="Convert" name=mKilogram_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Gram<br/><font style="font-size:8pt;">(g)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=mGram size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(mGram.value)) compute(this.form,mGram.name,weight_data)" type=button value="Convert" name=mGram_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Milligram<br/><font style="font-size:8pt;">(mg)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=mMilligram size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(mMilligram.value)) compute(this.form,mMilligram.name,weight_data)" type=button value="Convert" name=mMilligram_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr>
+			              <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Troy Weight]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Troy pound<br/><font style="font-size:8pt;">(lb&nbsp;t)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=troyPound size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(troyPound.value)) compute(this.form,troyPound.name,weight_data)" type=button value="Convert" name=troyPound_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Troy ounce<br/><font style="font-size:8pt;">(oz&nbsp;t)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=troyOunce size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(troyOunce.value)) compute(this.form,troyOunce.name,weight_data)" type=button value="Convert" name=troyOunce_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pennyweight<br /><font style="font-size:8pt;">(dwt)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=troyDWT size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(troyDWT.value)) compute(this.form,troyDWT.name,weight_data)" type=button value="Convert" name=troyDWT_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Troy grain</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=troyGrain size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(troyGrain.value)) compute(this.form,troyGrain.name,weight_data)" type=button value="Convert" name=troyGrain_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr>
+			              <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Avoirdupois Weight]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Long ton (GB)</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=briTon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(briTon.value)) compute(this.form,briTon.name,weight_data)" type=button value="Convert" name=briTon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Short ton (US)</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=usTon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(usTon.value)) compute(this.form,usTon.name,weight_data)" type=button value="Convert" name=usTon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Hundredweight (GB)<br /><font style="font-size:8pt;">(cwt)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=briCWT size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(briCWT.value)) compute(this.form,briCWT.name,weight_data)" type=button value="Convert" name=briCWT_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Hundredweight (US)<br /><font style="font-size:8pt;">(cwt)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=usCWT size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(usCWT.value)) compute(this.form,usCWT.name,weight_data)" type=button value="Convert" name=usCWT_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Stone</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=briStone size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(briStone.value)) compute(this.form,briStone.name,weight_data)" type=button value="Convert" name=briStone_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pound<br /><font style="font-size:8pt;">(lb)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=avdpPound size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(avdpPound.value)) compute(this.form,avdpPound.name,weight_data)" type=button value="Convert" name=avdpPound_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Ounce<br /><font style="font-size:8pt;">(oz)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=avdpOunce size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(avdpOunce.value)) compute(this.form,avdpOunce.name,weight_data)" type=button value="Convert" name=avdpOunce_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Dram<br /><font style="font-size:8pt;">(dr)</font></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=avdpDram size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(avdpDram.value)) compute(this.form,avdpDram.name,weight_data)" type=button value="Convert" name=avdpDram_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Grain<br /></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=avdpGrain size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(avdpGrain.value)) compute(this.form,avdpGrain.name,weight_data)" type=button value="Convert" name=avdpGrain_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr>
+			              <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Chinese System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Jin1</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=cJin size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(cJin.value)) compute(this.form,cJin.name,weight_data)" type=button value="Convert" name=cJin_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Dan4</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=cDan size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(cDan.value)) compute(this.form,cDan.name,weight_data)" type=button value="Convert" name=cDan_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+			            <tr> 
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Liang3</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=cLiang size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(cLiang.value)) compute(this.form,cLiang.name,weight_data)" type=button value="Convert" name=cLiang_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Qian2</td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name=cQian size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="if (checkNum(cQian.value)) compute(this.form,cQian.name,weight_data)" type=button value="Convert" name=cQian_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+			            </tr>
+					        <tr height=10>
+								<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+								<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+									<input onClick="resetValues(this.form, weight_data)" type=button value="Clear Form" name=res8 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td></tr>
+			        </form>
+			        </tbody> 
+			      </table>
+			    </td>
+			  </tr>
+			  </tbody>
+			</table>
+    <table id="page1" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" width="100%" bgcolor="#ffffff" cellpadding="4">
+            <tbody>
+            <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+            <tr>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilometer<br/><font style="font-size:8pt;">(km)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mKilometer size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mKilometer.value)) compute(this.form,mKilometer.name,length_data)" type=button value="Convert" name=mKilometer_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Meter<br/><font style="font-size:8pt;">(m)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mMeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mMeter.value)) compute(this.form,mMeter.name,length_data)" type=button value="Convert" name=mMeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Decimeter<br/><font style="font-size:8pt;">(dm)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mDecimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mDecimeter.value)) compute(this.form,mDecimeter.name,length_data)" type=button value="Convert" name=mDecimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Centimeter<br/><font style="font-size:8pt;">(cm)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mCentimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mCentimeter.value)) compute(this.form,mCentimeter.name,length_data)" type=button value="Convert" name=mCentimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Millimeter<br/><font style="font-size:8pt;">(mm)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mMillimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mMillimeter.value)) compute(this.form,mMillimeter.name,length_data)" type=button value="Convert" name=mMillimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Micron<br/><font style="font-size:8pt;">(um)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mMicronmeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mMicronmeter.value)) compute(this.form,mMicronmeter.name,length_data)" type=button value="Convert" name=mMicronmeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Nautical mile<br/><font style="font-size:8pt;">(nmi)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=nautMile size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(nautMile.value)) compute(this.form,nautMile.name,length_data)" type=button value="Convert" name=nautMile_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fathom</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=nautFathom size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(nautFathom.value)) compute(this.form,nautFathom.name,length_data)" type=button value="Convert" name=nautFathom_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Mile<br/><font style="font-size:8pt;">(mi)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engMile size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engMile.value)) compute(this.form,engMile.name,length_data)" type=button value="Convert" name=engMile_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Furlong<br/><font style="font-size:8pt;">(fur)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engFurlong size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engFurlong.value)) compute(this.form,engFurlong.name,length_data)" type=button value="Convert" name=engFurlong_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Yard<br/><font style="font-size:8pt;">(yd)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engYard size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engYard.value)) compute(this.form,engYard.name,length_data)" type=button value="Convert" name=engYard_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Foot<br/><font style="font-size:8pt;">(ft)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engFoot size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engFoot.value)) compute(this.form,engFoot.name,length_data)" type=button value="Convert" name=engFoot_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Inch<br/><font style="font-size:8pt;">(in)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engInch size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engInch.value)) compute(this.form,engInch.name,length_data)" type=button value="Convert" name=engInch_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Mil<br/><font style="font-size:8pt;">(mil)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=engMil size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(engMil.value)) compute(this.form,engMil.name,length_data)" type=button value="Convert" name=engMil_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Li3 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mLimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mLimeter.value)) compute(this.form,mLimeter.name,length_data)" type=button value="Convert" name=mLimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Zhang4 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mZhangmeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mZhangmeter.value)) compute(this.form,mZhangmeter.name,length_data)" type=button value="Convert" name=mZhangmeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Chi3 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mChimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mChimeter.value)) compute(this.form,mChimeter.name,length_data)" type=button value="Convert" name=mChimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cun4 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mCunmeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mCunmeter.value)) compute(this.form,mCunmeter.name,length_data)" type=button value="Convert" name=mCunmeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fen1 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mFenmeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mFenmeter.value)) compute(this.form,mFenmeter.name,length_data)" type=button value="Convert" name=mFenmeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Li2 (cn)</td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mmLimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mmLimeter.value)) compute(this.form,mmLimeter.name,length_data)" type=button value="Convert" name=mmLimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="resetValues(this.form, length_data)" type=button value="Clear Form" name=res9 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+            </tr>
+            </tbody> 
+          </form>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+		</table>
+    <table id="page2" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. kilometer<br /><font style="font-size:8pt;">(km<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mSquare_kilometer size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mSquare_kilometer.value)) compute(this.form,mSquare_kilometer.name,area_data)" type=button value="Convert" name=mSquare_kilometer_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Hectare<br /><font style="font-size:8pt;">(ha)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mHectare size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mHectare.value)) compute(this.form,mHectare.name,area_data)" type=button value="Convert" name=mHectare_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Acre (cn)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mAre size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mAre.value)) compute(this.form,mAre.name,area_data)" type=button value="Convert" name=mAre_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. meter<br /><font style="font-size:8pt;">(m<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mSquare_meter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mSquare_meter.value)) compute(this.form,mSquare_meter.name,area_data)" type=button value="Convert" name=mSquare_meter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. decimeter<br /><font style="font-size:8pt;">(dm<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mSquare_decimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mSquare_decimeter.value)) compute(this.form,mSquare_decimeter.name,area_data)" type=button value="Convert" name=mSquare_decimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. centimeter<br /><font style="font-size:8pt;">(cm<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mSquare_centimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mSquare_centimeter.value)) compute(this.form,mSquare_centimeter.name,area_data)" type=button value="Convert" name=mSquare_centimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. millimeter<br /><font style="font-size:8pt;">(mm<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mSquare_millimeter size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mSquare_millimeter.value)) compute(this.form,mSquare_millimeter.name,area_data)" type=button value="Convert" name=mSquare_millimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. mile<br /><font style="font-size:8pt;">(mi<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engSquare_mile size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(engSquare_mile.value)) compute(this.form,engSquare_mile.name,area_data)" type=button value="Convert" name=engSquare_mile_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Acre</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engAcre size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(engAcre.value)) compute(this.form,engAcre.name,area_data)" type=button value="Convert" name=engAcre_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. rod<br /><font style="font-size:8pt;">(rd<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usSquare_rod size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usSquare_rod.value)) compute(this.form,usSquare_rod.name,area_data)" type=button value="Convert" name=usSquare_rod_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. yard<br /><font style="font-size:8pt;">(yd<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engSquare_yard size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(engSquare_yard.value)) compute(this.form,engSquare_yard.name,area_data)" type=button value="Convert" name=engSquare_yard_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Square foot<br /><font style="font-size:8pt;">(ft<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engSquare_foot size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(engSquare_foot.value)) compute(this.form,engSquare_foot.name,area_data)" type=button value="Convert" name=engSquare_foot_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Sq. inch<br /><font style="font-size:8pt;">(in<sup>2</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engSquare_inch size="15" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(engSquare_inch.value)) compute(this.form,engSquare_inch.name,area_data)" type=button value="Convert" name=engSquare_inch_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+            		<tr height=10>
+            			<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+						<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick="resetValues(this.form, area_data)" type=button value="Clear Form" name=res10 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+            		</tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+   	</table>
+    <table id="page3" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					&nbsp;</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					&nbsp;</td>
+                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					&nbsp;</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					&nbsp;</td>
+				<td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Table spoon<font style="font-size:8pt;">(Tbs)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscTable_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscTable_spoon.value)) compute(this.form,uscTable_spoon.name,vol_data)" type=button value="Convert" name=uscTable_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Tea spoon<br/><font style="font-size:8pt;">(tsp)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscTea_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscTea_spoon.value)) compute(this.form,uscTea_spoon.name,vol_data)" type=button value="Convert" name=uscTea_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=center style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic meter<br/><font style="font-size:8pt;">(m<sup>3</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mCubic_meter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mCubic_meter.value)) compute(this.form,mCubic_meter.name,vol_data)" type=button value="Convert" name=mCubic_meter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Hectoliter<br/><font style="font-size:8pt;">(hl)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mHectoliter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mHectoliter.value)) compute(this.form,mHectoliter.name,vol_data)" type=button value="Convert" name=mHectoliter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Dekaliter<br/><font style="font-size:8pt;">(dal)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mDekaliter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mDekaliter.value)) compute(this.form,mDekaliter.name,vol_data)" type=button value="Convert" name=mDekaliter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic decimeter<br/>(dm<sup>3</sup>) = Liter <font style="font-size:8pt;">(l)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mLiter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mLiter.value)) compute(this.form,mLiter.name,vol_data)" type=button value="Convert" name=mLiter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Deciliter<br/><font style="font-size:8pt;">(dl)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mDeciliter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mDeciliter.value)) compute(this.form,mDeciliter.name,vol_data)" type=button value="Convert" name=mDeciliter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Centiliter<br/><font style="font-size:8pt;">(cl)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mCentiliter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mCentiliter.value)) compute(this.form,mCentiliter.name,vol_data)" type=button value="Convert" name=mCentiliter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic centimetre<br/>(cm<sup>3</sup>) = Milliliter <font style="font-size:8pt;">(ml)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mMilliliter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mMilliliter.value)) compute(this.form,mMilliliter.name,vol_data)" type=button value="Convert" name=mMilliliter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic millimeter<br /><font style="font-size:8pt;">(mm<sup>3</sup>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mCubic_millimeter size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mCubic_millimeter.value)) compute(this.form,mCubic_millimeter.name,vol_data)" type=button value="Convert" name=mCubic_millimeter_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Britich Liquid &amp; Dry]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Barrel</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=briBarrel size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(briBarrel.value)) compute(this.form,briBarrel.name,vol_data)" type=button value="Convert" name=briBarrel_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Bushel</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=briBushel size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(briBushel.value)) compute(this.form,briBushel.name,vol_data)" type=button value="Convert" name=briBushel_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Gallon<br/><font style="font-size:8pt;">(bal)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=briGallon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(briGallon.value)) compute(this.form,briGallon.name,vol_data)" type=button value="Convert" name=briGallon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pint<br/><font style="font-size:8pt;">(pt)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=briPint size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(briPint.value)) compute(this.form,briPint.name,vol_data)" type=button value="Convert" name=briPint_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fluid ounce<br/><font style="font-size:8pt;">(fl oz)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=briFluid_ounce size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(briFluid_ounce.value)) compute(this.form,briFluid_ounce.name,vol_data)" type=button value="Convert" name=briFluid_ounce_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Table spoon<br /><font style="font-size:8pt;">(Table spoon)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mcTable_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mcTable_spoon.value)) compute(this.form,mcTable_spoon.name,vol_data)" type=button value="Convert" name=mcTable_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Tea spoon<br /><font style="font-size:8pt;">(Tea spoon)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mcTea_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(mcTea_spoon.value)) compute(this.form,mcTea_spoon.name,vol_data)" type=button value="Convert" name=mcTea_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric Cooking System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[USA Cooking System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cup<font style="font-size:8pt;">(fl oz)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscCup size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscCup.value)) compute(this.form,uscCup.name,vol_data)" type=button value="Convert" name=uscCup_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[USA Dry]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Barrel</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usdBarrel size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usdBarrel.value)) compute(this.form,usdBarrel.name,vol_data)" type=button value="Convert" name=usdBarrel_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Bushel<br/><font style="font-size:8pt;">(bu)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usdBushel size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usdBushel.value)) compute(this.form,usdBushel.name,vol_data)" type=button value="Convert" name=usdBushel_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Peck<br/><font style="font-size:8pt;">(pk)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usdPeck size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usdPeck.value)) compute(this.form,usdPeck.name,vol_data)" type=button value="Convert" name=usdPeck_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Quart<br/><font style="font-size:8pt;">(qt)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usdQuart size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usdQuart.value)) compute(this.form,usdQuart.name,vol_data)" type=button value="Convert" name=usdQuart_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pint<br/><font style="font-size:8pt;">(pt)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=usdPint size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(usdPint.value)) compute(this.form,usdPint.name,vol_data)" type=button value="Convert" name=usdPint_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[USA Liquid
+]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Barrel<br/>[42 gal]</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslBarrel size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslBarrel.value)) compute(this.form,uslBarrel.name,vol_data)" type=button value="Convert" name=uslBarrel_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Gallon<br/><font style="font-size:8pt;">(gal)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslGallon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslGallon.value)) compute(this.form,uslGallon.name,vol_data)" type=button value="Convert" name=uslGallon_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Quart<br/><font style="font-size:8pt;">(qt)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslQuart size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslQuart.value)) compute(this.form,uslQuart.name,vol_data)" type=button value="Convert" name=uslQuart_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pint<br/><font style="font-size:8pt;">(pt)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslPint size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslPint.value)) compute(this.form,uslPint.name,vol_data)" type=button value="Convert" name=uslPint_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Gill<br/><font style="font-size:8pt;">(gi)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslGill size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslGill.value)) compute(this.form,uslGill.name,vol_data)" type=button value="Convert" name=uslGill_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fluid ounce<br/><font style="font-size:8pt;">(fl oz)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslFluid_ounce size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslFluid_ounce.value)) compute(this.form,uslFluid_ounce.name,vol_data)" type=button value="Convert" name=uslFluid_ounce_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fluid dram<br/><font style="font-size:8pt;">(fl dr)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslFluid_dram size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslFluid_dram.value)) compute(this.form,uslFluid_dram.name,vol_data)" type=button value="Convert" name=uslFluid_dram_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Minim<br/><font style="font-size:8pt;">(min)</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uslMinim size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uslMinim.value)) compute(this.form,uslMinim.name,vol_data)" type=button value="Convert" name=uslMinim_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[British & USA Common]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Acre foot</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscAcre_foot size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscAcre_foot.value)) compute(this.form,uscAcre_foot.name,vol_data)" type=button value="Convert" name=uscAcre_foot_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic yard</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscCubic_yard size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscCubic_yard.value)) compute(this.form,uscCubic_yard.name,vol_data)" type=button value="Convert" name=uscCubic_yard_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic foot</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscCubic_foot size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscCubic_foot.value)) compute(this.form,uscCubic_foot.name,vol_data)" type=button value="Convert" name=uscCubic_foot_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic inch</td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscCubic_inch size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscCubic_inch.value)) compute(this.form,uscCubic_inch.name,vol_data)" type=button value="Convert" name=uscCubic_inch_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+						<input onClick="resetValues(this.form, vol_data)" type=button value="Clear Form" name=res11 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+                </tr>
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+   	</table>
+    <table id="page5" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Watt<br/><font style="font-size:8pt;">(W)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Watt size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Watt.value)) compute(this.form,Watt.name,power_data)" type=button value="Convert" name=Watt_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilowatt<br/><font style="font-size:8pt;">(kW)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Kilowatt size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Kilowatt.value)) compute(this.form,Kilowatt.name,power_data)" type=button value="Convert" name=Kilowatt_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Horsepower (GB)<br/><font style="font-size:8pt;">(HP)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Horsepower size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Horsepower.value)) compute(this.form,Horsepower.name,power_data)" type=button value="Convert" name=Horsepower_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Horsepower (US)<br/><font style="font-size:8pt;">(PS)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=mHorsepower size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(mHorsepower.value)) compute(this.form,mHorsepower.name,power_data)" type=button value="Convert" name=mHorsepower_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kg-meter/sec<br/><font style="font-size:8pt;">(kg &bull; m/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=kgms size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(kgms.value)) compute(this.form,kgms.name,power_data)" type=button value="Convert" name=kgms_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilocalories/sec<br/><font style="font-size:8pt;">(kcal/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=kcals size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(kcals.value)) compute(this.form,kcals.name,power_data)" type=button value="Convert" name=kcals_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">BTU/sec<br/><font style="font-size:8pt;">(Btu/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Btus size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Btus.value)) compute(this.form,Btus.name,power_data)" type=button value="Convert" name=Btus_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Foot-lbs/sec<br/><font style="font-size:8pt;">(ft &bull; lb/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=ftlbs size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(ftlbs.value)) compute(this.form,ftlbs.name,power_data)" type=button value="Convert" name=ftlbs_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Joules/sec<br/><font style="font-size:8pt;">(J/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Js size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Js.value)) compute(this.form,Js.name,power_data)" type=button value="Convert" name=Js_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Newton-meter/sec<br/><font style="font-size:8pt;">(N &bull; m/s)</font></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input name=Nms size="10" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+              <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<input onClick="if (checkNum(Nms.value)) compute(this.form,Nms.name,power_data)" type=button value="Convert" name=Nms_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+            </tr>
+            <tr> 
+              <td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+				<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="resetValues(this.form, power_data)" type=button value="Clear Form" name=res12 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+            </tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+   	</table>
+    <table id="page6" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Joule<br/><font style="font-size:8pt;">(J)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Joule size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Joule.value)) compute(this.form,Joule.name,heat_data)" type=button value="Convert" name=Joule_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilogram-meter<br/><font style="font-size:8pt;">(kg &bull; m)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Kgm size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Kgm.value)) compute(this.form,Kgm.name,heat_data)" type=button value="Convert" name=Kgm_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">PS &bull; h</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Psh size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Psh.value)) compute(this.form,Psh.name,heat_data)" type=button value="Convert" name=Psh_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">HP &bull; h</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Hph size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Hph.value)) compute(this.form,Hph.name,heat_data)" type=button value="Convert" name=Hph_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilowatt-hour<br/><font style="font-size:8pt;">(kw &bull; h)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Kwh size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Kwh.value)) compute(this.form,Kwh.name,heat_data)" type=button value="Convert" name=Kwh_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilocalory<br/><font style="font-size:8pt;">(kcal)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Kcal size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Kcal.value)) compute(this.form,Kcal.name,heat_data)" type=button value="Convert" name=Kcal_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">Btu</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Btu size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Btu.value)) compute(this.form,Btu.name,heat_data)" type=button value="Convert" name=Btu_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Foot-lb<br/><font style="font-size:8pt;">(ft &bull; lb)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=Ftlb size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(Ftlb.value)) compute(this.form,Ftlb.name,heat_data)" type=button value="Convert" name=Ftlb_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr>
+                  <td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+						<input onClick="resetValues(this.form, heat_data)" type=button value="Clear Form" name=res7 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+                </tr>
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+  	</table>
+    <table id="page7" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Bar<br/><font style="font-size:8pt;">(bar)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mBar size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mBar_bt onClick="if (checkNum(mBar.value)) compute(this.form,mBar.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kilopascal<br/><font style="font-size:8pt;">(kPa)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mKilopascal size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mKilopascal_bt onClick="if (checkNum(mKilopascal.value)) compute(this.form,mKilopascal.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Hectopascal<br/><font style="font-size:8pt;">(hPa)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mHectopascal size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mHectopascal_bt onClick="if (checkNum(mHectopascal.value)) compute(this.form,mHectopascal.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Millibar<br/><font style="font-size:8pt;">(mbar)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mMillibar size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mMillibar_bt onClick="if (checkNum(mMillibar.value)) compute(this.form,mMillibar.name,press_data)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pascal<br /><font style="font-size:8pt;">(Pa&nbsp;=&nbsp;N/m<SUP>2</SUP>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mPascal size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mPascal_bt onClick="if (checkNum(mPascal.value)) compute(this.form,mPascal.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Atmosphere<br/><font style="font-size:8pt;">(atm)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mAtm size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mAtm_bt onClick="if (checkNum(mAtm.value)) compute(this.form,mAtm.name,press_data)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Millimeter Hg<br /><font style="font-size:8pt;">(mm&nbsp;Hg = Torr)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mMillimeter_Hg size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mMillimeter_Hg_bt onClick="if (checkNum(mMillimeter_Hg.value)) compute(this.form,mMillimeter_Hg.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pound/foot<SUP>2</SUP><br /><font style="font-size:8pt;">(lbf/ft<SUP>2</SUP>)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engPound_sq_foot size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engPound_sq_foot_bt onClick="if (checkNum(engPound_sq_foot.value)) compute(this.form,engPound_sq_foot.name,press_data)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Pound/inch<SUP>2</SUP><br /><font style="font-size:8pt;">(lbf/in<SUP>2</SUP>&nbsp;=&nbsp;PSI)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engPound_sq_inch size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engPound_sq_inch_bt onClick="if (checkNum(engPound_sq_inch.value)) compute(this.form,engPound_sq_inch.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Inch Hg<br/><font style="font-size:8pt;">(in&nbsp;Hg)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engInch_Hg size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=engInch_Hg_bt onClick="if (checkNum(engInch_Hg.value)) compute(this.form,engInch_Hg.name,press_data)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">kgf/cm<SUP>2</SUP></font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=xpressKg_sq_cm size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=xpressKg_sq_cm_bt onClick="if (checkNum(xpressKg_sq_cm.value)) compute(this.form,xpressKg_sq_cm.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">kgf/m<SUP>2</SUP></font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=xpressKg_sq_m size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=xpressKg_sq_m_bt onClick="if (checkNum(xpressKg_sq_m.value)) compute(this.form,xpressKg_sq_m.name,press_data)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><font style="font-size:8pt;">(mmH<SUB>2</SUB>O)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mmmH2O size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=mmmH2O_bt onClick="if (checkNum(mmmH2O.value)) compute(this.form,mmmH2O.name,press_data)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+	                <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+		            <tr height=10>
+		            	<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+						<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input name="res13" onClick="resetValues(this.form, press_data)" type="button" value="Clear Form" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+		            </tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+   	</table>
+    <table id="page4" class="tb" style="display:none" cellSpacing=1 borderColorDark=#ffffff cellPadding=2 width="100%" align=center bgColor=#cccccc border=0>
+      <tbody>
+      <tr bgcolor="ffffff">
+        <td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+          <table class="tb" cellpadding="4" cellspacing="0" width="100%">
+            <tbody>
+           <form action="">
+            <tr height=10>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Celsius <font style="font-size:8pt;">(C)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=tempCelsius size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(tempCelsius.value)) computeTempC(this.form)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Fahrenheit <font style="font-size:8pt;">(F)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=tempFahr size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(tempFahr.value)) computeTempF(this.form)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Kelvin <font style="font-size:8pt;">(K)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=tempKelvin size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(tempKelvin.value)) computeTempK(this.form)" type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Rankine <font style="font-size:8pt;">(Ra)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=tempRankine size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(tempRankine.value)) computeTempRa(this.form)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                <tr> 
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Reaumur <font style="font-size:8pt;">(Re)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=tempReaumur size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(tempReaumur.value)) computeTempRe(this.form)"  type=button value="Convert" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+            		<tr height=10>
+            			<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+						<div align="center" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+							<input onClick=resetTempRe(this.form) type=button value="Clear Form" name=res6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></div></td>
+            		</tr>
+            </form>
+            </tbody> 
+          </table>
+        </td>
+      </tr>
+      </tbody>
+ 	  </table>
+	 </td>
+	</tr>
+</table>
+</div>
+<div id="list"></div>
+<div align="center" style="font-family:tahoma; font-size:8pt; line-height:normal; color:#666666">
+	&nbsp;</div>				
+				
+<script type=text/javascript>
+calcNow();
+</script></div>
+		</div>
+
+
+</body>
+
+		<div class="col-md-4" style="height: auto !important;">
+<div class="mb-4">
+	&nbsp;</div>
+<div class="list-group mb-4">
+	<b>
+	<a class="list-group-item text-decoration-none list-group-item-primary">Font Converter</a></b><div class="card-body bg-light">
+		<ul>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/">Akruti &gt; Unicode</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/Shreelipi.htm">Shreelipi &gt; Unicode</a></li>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/Gist.htm">Gist &gt; Unicode</a></li>
+			<li>shruti &gt; Unicode</li>
+			<li>Aprant &gt; Unicode</li>
+		</ul>
+	</div>
+	<p>&nbsp;<b><a class="list-group-item text-decoration-none list-group-item-success">Non-Unicode Converter</a></b></p>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/unitoak/">Unicode &gt; Akruti</a></li>
+		</ul>
+	</div>
+	</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Home)</b></div>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/spellchecker/">Odia</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/spellchecker-hindi/">Hindi</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/spellchecker/english_spellchecker.htm">
+			English</a></li>
+		</ul>
+	</div>
+</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning" style="background-color: #C0C0C0 !important"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Add-on)</b></div>
+	<div class="card-body bg-light">
+		<p align="center"><span style="font-size: 13pt">Installing a dictionary
+		<b>
+		<a href="https://font-exchange.github.io/spellchecker/content/Spell_add-on_inner.htm">
+		<font color="#FF0000">add-on</font></a></b> will add a new language 
+		option to your spell-checker, which checks your spelling as you type.</span></p></div>
+</div>
+		</div>
+
+  		<BODY bgcolor="#EAF0F8" topmargin="10" leftmargin="10" rightmargin="10" bottommargin="10">
+	</div>
+</div>
+<div class="container">
+	-<footer class="bg-light border-top p-3"><div class="row">
+		<div class="col-sm-4 small pb-2">
+			<p style="text-align: center">expoodisha.com 2023. All Rights Reserved.</div>
+	</div>
+</div>
+</footer>
+
+
+</body></html>
