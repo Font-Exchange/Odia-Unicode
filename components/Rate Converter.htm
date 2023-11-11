@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Currency Converter</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","https://expoodisha.com/Software/spellchecker/livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+
+
+<link rel="stylesheet" href="../../spellchecker/content/bootstrapc.css">
+<link rel="stylesheet" href="../../spellchecker/content/stylec.css">
+
+
+
+<style>
+<!--
+
+	a:link       { color: #0000FF; text-decoration: none }
+	a:link.msg 		{ color: #7DA1CD; text-decoration: none }
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+
+
+document.body.dir = g_Dir;
+//alert(document.body.dir);
+
+function UpdatePage() {
+	if (jsonResult)
+	{
+		if(jsonResult.code == 0)
+		{
+			var sRate = jsonResult.value + " " + jsonResult.from + " = <b>" + jsonResult.result + " " + jsonResult.to + "</b>";
+			document.getElementById("r").innerHTML = sRate;
+			
+			var upd = new Date(jsonResult.update_sec * 1000);
+			document.getElementById("t").innerHTML = upd.toUTCString() + " <span style='color:#000080'>&bull;</span> " + upd.toLocaleString();
+		}
+		else
+		{
+			document.getElementById("r").innerHTML = "";
+			document.getElementById("t").innerHTML = "Error: convert failed";
+			//alert(sText);
+		}
+	}
+	else
+	{
+		document.getElementById("r").innerHTML = "";
+		document.getElementById("t").innerHTML = "Error: get data failed";
+	}
+}
+
+function convertRate() {
+	var a = document.getElementById("a").value;
+	var from = document.getElementById("from").value;
+	var to = document.getElementById("to").value;
+	//var url = "http://www.google.com/finance/converter?a=" + a + "&from=" + from + "&to=" + to;
+	var url_api = "http://www.lingoes.net/api/rate/currency.php?cmd=converter&a=" + a + "&from=" + from + "&to=" + to;
+
+	// 显示等待条
+	document.getElementById("r").innerHTML = "<span style='font-size:83%'>Connect network services...</span><br/><img border='0' width='120' height='4' src='" + document.getElementById("r").waitimg + "'>";
+
+	loadScript(url_api, "jsonResult", "UpdatePage");
+}
+
+function changeCurrency()
+{
+	var sFrom = document.getElementById("from").value;
+	var sTo = document.getElementById("to").value;
+	document.getElementById("from").value = sTo;
+	document.getElementById("to").value = sFrom;
+}
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mshadow py-0 mb-4">
+<div class="container">
+	<a class="navbar-brand pr-5" href="">
+	<img loading="lazy" src="../../Users/shrim/Downloads/spellchecker-main(2)/spellchecker-main/dynamic_files/spell_logo.png" alt="" title="" width="267" height="50"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item pr-2">
+			<a class="nav-link text-dark" href="https://font-exchange.github.io/spellchecker/"><i class="fas fa-home"></i> 
+			Home <span class="sr-only">(current)</span></a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/dynamic.htm">
+			Dynamic Spell</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/Odia-Unicode/components/components.htm">
+			Components</a></li>
+			<li class="nav-item dropdown pr-2">
+				<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/contact.htm"><i class="fas fa-envelope"></i> 
+				Contact</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/help.htm">Help</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary">
+			Search&gt;&gt;</a></li>
+		</ul>
+		<form class="form-inline my-4 my-lg-0" role="search" name="search" id="search" method="get" action="/search/">
+			<div class="input-group">
+				<input type="text" class="form-control" onkeyup="showResult(this.value)" name="T49" size="20">  
+			<div id="livesearch"></div>
+				
+				<div class="input-group-append">&nbsp;</div>
+			</div>
+		</form>
+	</div>
+</div>
+</nav>
+
+<div class="container" style="height: auto !important;">
+	<div class="row" style="height: auto !important;">
+		<div class="col-sm-8">
+			<h1><font size="4" color="#6699FF">Currency Convertere : </font></h1>
+<div class="card mb-4">
+	
+
+</head>
+
+<BODY bgcolor="#EAF0F8" topmargin="10" leftmargin="10" rightmargin="10" bottommargin="10">
+<div align="right" style="font-size: 8pt; line-height:normal; margin-bottom: 2">
+	&nbsp;</div>
+
+<div id="srctime">
+
+<div align="center">
+	<div style="color:#000000"><img border="0" src="logo24.png" width="24" height="24" align="absmiddle"> &nbsp;<b>Currency Converter</b></div>
+	<hr noshade color="#E0E0E0" size="1">
+	<form action="" method="get" name="f">
+		<table cellpadding="5" style="margin: 0">
+			<tr>
+				<td>Convert </td>
+				<td align="right"><input id="a" name="a" maxlength="12" size="7" autocomplete="off" value="1"></td>
+				<td><select id="from" name="from" value="USD">
+							<option value="AED">AED - United Arab Emirates Dirham</option>
+							<option value="ANG">ANG - Netherlands Antillean Guilder</option>
+							<option value="ARS">ARS - Argentine Peso</option>
+							<option value="AUD">AUD - Australian Dollar</option>
+							<option value="BDT">BDT - Bangladeshi Taka</option>
+							<option value="BGN">BGN - Bulgarian Lev</option>
+							<option value="BHD">BHD - Bahraini Dinar</option>
+							<option value="BND">BND - Brunei Dollar</option>
+							<option value="BOB">BOB - Bolivian Boliviano</option>
+							<option value="BRL">BRL - Brazilian Real</option>
+							<option value="BWP">BWP - Botswanan Pula</option>
+							<option value="CAD">CAD - Canadian Dollar</option>
+							<option value="CHF">CHF - Swiss Franc</option>
+							<option value="CLP">CLP - Chilean Peso</option>
+							<option value="CNY">CNY - Chinese Yuan</option>
+							<option value="COP">COP - Colombian Peso</option>
+							<option value="CRC">CRC - Costa Rican Colón</option>
+							<option value="CZK">CZK - Czech Republic Koruna</option>
+							<option value="DKK">DKK - Danish Krone</option>
+							<option value="DOP">DOP - Dominican Peso</option>
+							<option value="DZD">DZD - Algerian Dinar</option>
+							<option value="EEK">EEK - Estonian Kroon</option>
+							<option value="EGP">EGP - Egyptian Pound</option>
+							<option value="EUR">EUR - Euro</option>
+							<option value="FJD">FJD - Fijian Dollar</option>
+							<option value="GBP">GBP - British Pound Sterling</option>
+							<option value="HKD">HKD - Hong Kong Dollar</option>
+							<option value="HNL">HNL - Honduran Lempira</option>
+							<option value="HRK">HRK - Croatian Kuna</option>
+							<option value="HUF">HUF - Hungarian Forint</option>
+							<option value="IDR">IDR - Indonesian Rupiah</option>
+							<option value="ILS">ILS - Israeli New Sheqel</option>
+							<option value="INR">INR - Indian Rupee</option>
+							<option value="JMD">JMD - Jamaican Dollar</option>
+							<option value="JOD">JOD - Jordanian Dinar</option>
+							<option value="JPY">JPY - Japanese Yen</option>
+							<option value="KES">KES - Kenyan Shilling</option>
+							<option value="KRW">KRW - South Korean Won</option>
+							<option value="KWD">KWD - Kuwaiti Dinar</option>
+							<option value="KYD">KYD - Cayman Islands Dollar</option>
+							<option value="KZT">KZT - Kazakhstani Tenge</option>
+							<option value="LBP">LBP - Lebanese Pound</option>
+							<option value="LKR">LKR - Sri Lankan Rupee</option>
+							<option value="LTL">LTL - Lithuanian Litas</option>
+							<option value="LVL">LVL - Latvian Lats</option>
+							<option value="MAD">MAD - Moroccan Dirham</option>
+							<option value="MDL">MDL - Moldovan Leu</option>
+							<option value="MKD">MKD - Macedonian Denar</option>
+							<option value="MUR">MUR - Mauritian Rupee</option>
+							<option value="MVR">MVR - Maldivian Rufiyaa</option>
+							<option value="MXN">MXN - Mexican Peso</option>
+							<option value="MYR">MYR - Malaysian Ringgit</option>
+							<option value="NAD">NAD - Namibian Dollar</option>
+							<option value="NGN">NGN - Nigerian Naira</option>
+							<option value="NIO">NIO - Nicaraguan Córdoba</option>
+							<option value="NOK">NOK - Norwegian Krone</option>
+							<option value="NPR">NPR - Nepalese Rupee</option>
+							<option value="NZD">NZD - New Zealand Dollar</option>
+							<option value="OMR">OMR - Omani Rial</option>
+							<option value="PEN">PEN - Peruvian Nuevo Sol</option>
+							<option value="PGK">PGK - Papua New Guinean Kina</option>
+							<option value="PHP">PHP - Philippine Peso</option>
+							<option value="PKR">PKR - Pakistani Rupee</option>
+							<option value="PLN">PLN - Polish Zloty</option>
+							<option value="PYG">PYG - Paraguayan Guarani</option>
+							<option value="QAR">QAR - Qatari Rial</option>
+							<option value="RON">RON - Romanian Leu</option>
+							<option value="RSD">RSD - Serbian Dinar</option>
+							<option value="RUB">RUB - Russian Ruble</option>
+							<option value="SAR">SAR - Saudi Riyal</option>
+							<option value="SCR">SCR - Seychellois Rupee</option>
+							<option value="SEK">SEK - Swedish Krona</option>
+							<option value="SGD">SGD - Singapore Dollar</option>
+							<option value="SKK">SKK - Slovak Koruna</option>
+							<option value="SLL">SLL - Sierra Leonean Leone</option>
+							<option value="SVC">SVC - Salvadoran Colón</option>
+							<option value="THB">THB - Thai Baht</option>
+							<option value="TND">TND - Tunisian Dinar</option>
+							<option value="TRY">TRY - Turkish Lira</option>
+							<option value="TTD">TTD - Trinidad and Tobago Dollar</option>
+							<option value="TWD">TWD - New Taiwan Dollar</option>
+							<option value="TZS">TZS - Tanzanian Shilling</option>
+							<option value="UAH">UAH - Ukrainian Hryvnia</option>
+							<option value="UGX">UGX - Ugandan Shilling</option>
+							<option SELECTED value="USD">USD - US Dollar</option>
+							<option value="UYU">UYU - Uruguayan Peso</option>
+							<option value="UZS">UZS - Uzbekistan Som</option>
+							<option value="VEF">VEF - Venezuelan Bolívar</option>
+							<option value="VND">VND - Vietnamese Dong</option>
+							<option value="XOF">XOF - CFA Franc BCEAO</option>
+							<option value="YER">YER - Yemeni Rial</option>
+							<option value="ZAR">ZAR - South African Rand</option>
+							<option value="ZMK">ZMK - Zambian Kwacha</option>
+						</select>
+				</td>
+				<td><img border="0" style="cursor:pointer" src="swap.png" width="16" height="16" onClick="changeCurrency();"></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td align="center">into</td>
+				<td><select id="to" name="to" value="EUR">
+							<option value="AED">AED - United Arab Emirates Dirham</option>
+							<option value="ANG">ANG - Netherlands Antillean Guilder</option>
+							<option value="ARS">ARS - Argentine Peso</option>
+							<option value="AUD">AUD - Australian Dollar</option>
+							<option value="BDT">BDT - Bangladeshi Taka</option>
+							<option value="BGN">BGN - Bulgarian Lev</option>
+							<option value="BHD">BHD - Bahraini Dinar</option>
+							<option value="BND">BND - Brunei Dollar</option>
+							<option value="BOB">BOB - Bolivian Boliviano</option>
+							<option value="BRL">BRL - Brazilian Real</option>
+							<option value="BWP">BWP - Botswanan Pula</option>
+							<option value="CAD">CAD - Canadian Dollar</option>
+							<option value="CHF">CHF - Swiss Franc</option>
+							<option value="CLP">CLP - Chilean Peso</option>
+							<option value="CNY">CNY - Chinese Yuan</option>
+							<option value="COP">COP - Colombian Peso</option>
+							<option value="CRC">CRC - Costa Rican Colón</option>
+							<option value="CZK">CZK - Czech Republic Koruna</option>
+							<option value="DKK">DKK - Danish Krone</option>
+							<option value="DOP">DOP - Dominican Peso</option>
+							<option value="DZD">DZD - Algerian Dinar</option>
+							<option value="EEK">EEK - Estonian Kroon</option>
+							<option value="EGP">EGP - Egyptian Pound</option>
+							<option SELECTED value="EUR">EUR - Euro</option>
+							<option value="FJD">FJD - Fijian Dollar</option>
+							<option value="GBP">GBP - British Pound Sterling</option>
+							<option value="HKD">HKD - Hong Kong Dollar</option>
+							<option value="HNL">HNL - Honduran Lempira</option>
+							<option value="HRK">HRK - Croatian Kuna</option>
+							<option value="HUF">HUF - Hungarian Forint</option>
+							<option value="IDR">IDR - Indonesian Rupiah</option>
+							<option value="ILS">ILS - Israeli New Sheqel</option>
+							<option value="INR">INR - Indian Rupee</option>
+							<option value="JMD">JMD - Jamaican Dollar</option>
+							<option value="JOD">JOD - Jordanian Dinar</option>
+							<option value="JPY">JPY - Japanese Yen</option>
+							<option value="KES">KES - Kenyan Shilling</option>
+							<option value="KRW">KRW - South Korean Won</option>
+							<option value="KWD">KWD - Kuwaiti Dinar</option>
+							<option value="KYD">KYD - Cayman Islands Dollar</option>
+							<option value="KZT">KZT - Kazakhstani Tenge</option>
+							<option value="LBP">LBP - Lebanese Pound</option>
+							<option value="LKR">LKR - Sri Lankan Rupee</option>
+							<option value="LTL">LTL - Lithuanian Litas</option>
+							<option value="LVL">LVL - Latvian Lats</option>
+							<option value="MAD">MAD - Moroccan Dirham</option>
+							<option value="MDL">MDL - Moldovan Leu</option>
+							<option value="MKD">MKD - Macedonian Denar</option>
+							<option value="MUR">MUR - Mauritian Rupee</option>
+							<option value="MVR">MVR - Maldivian Rufiyaa</option>
+							<option value="MXN">MXN - Mexican Peso</option>
+							<option value="MYR">MYR - Malaysian Ringgit</option>
+							<option value="NAD">NAD - Namibian Dollar</option>
+							<option value="NGN">NGN - Nigerian Naira</option>
+							<option value="NIO">NIO - Nicaraguan Córdoba</option>
+							<option value="NOK">NOK - Norwegian Krone</option>
+							<option value="NPR">NPR - Nepalese Rupee</option>
+							<option value="NZD">NZD - New Zealand Dollar</option>
+							<option value="OMR">OMR - Omani Rial</option>
+							<option value="PEN">PEN - Peruvian Nuevo Sol</option>
+							<option value="PGK">PGK - Papua New Guinean Kina</option>
+							<option value="PHP">PHP - Philippine Peso</option>
+							<option value="PKR">PKR - Pakistani Rupee</option>
+							<option value="PLN">PLN - Polish Zloty</option>
+							<option value="PYG">PYG - Paraguayan Guarani</option>
+							<option value="QAR">QAR - Qatari Rial</option>
+							<option value="RON">RON - Romanian Leu</option>
+							<option value="RSD">RSD - Serbian Dinar</option>
+							<option value="RUB">RUB - Russian Ruble</option>
+							<option value="SAR">SAR - Saudi Riyal</option>
+							<option value="SCR">SCR - Seychellois Rupee</option>
+							<option value="SEK">SEK - Swedish Krona</option>
+							<option value="SGD">SGD - Singapore Dollar</option>
+							<option value="SKK">SKK - Slovak Koruna</option>
+							<option value="SLL">SLL - Sierra Leonean Leone</option>
+							<option value="SVC">SVC - Salvadoran Colón</option>
+							<option value="THB">THB - Thai Baht</option>
+							<option value="TND">TND - Tunisian Dinar</option>
+							<option value="TRY">TRY - Turkish Lira</option>
+							<option value="TTD">TTD - Trinidad and Tobago Dollar</option>
+							<option value="TWD">TWD - New Taiwan Dollar</option>
+							<option value="TZS">TZS - Tanzanian Shilling</option>
+							<option value="UAH">UAH - Ukrainian Hryvnia</option>
+							<option value="UGX">UGX - Ugandan Shilling</option>
+							<option value="USD">USD - US Dollar</option>
+							<option value="UYU">UYU - Uruguayan Peso</option>
+							<option value="UZS">UZS - Uzbekistan Som</option>
+							<option value="VEF">VEF - Venezuelan Bolívar</option>
+							<option value="VND">VND - Vietnamese Dong</option>
+							<option value="XOF">XOF - CFA Franc BCEAO</option>
+							<option value="YER">YER - Yemeni Rial</option>
+							<option value="ZAR">ZAR - South African Rand</option>
+							<option value="ZMK">ZMK - Zambian Kwacha</option>
+				</select>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="3">
+				<table width="100%" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="100%" style="color:#000080"><span id="r" name="r" dir="ltr" waitimg="wait_request.gif"></span></td>
+						<td align="right"><input type="button" value="Convert" onClick="convertRate();"></td>
+					</tr>
+				</table>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</form>
+	<hr noshade color="#E0E0E0" size="1">
+	<div id="t" name="t" style="color: #808080; font-size: 83%; margin-bottom: 5"></div>
+	<div style="color: #7DA1CD; font-size: 83%"><a href="http://finance.google.com/" class="msg"><span>Source: Google Finance</span></a></div>
+</div>
+
+&nbsp;</div>
+<div id="list"></div>
+<div align="center" style="font-family:tahoma; font-size:8pt; line-height:normal; color:#666666">
+	&nbsp;</div>				
+				
+<script type=text/javascript>
+calcNow();
+</script></div>
+		</div>
+
+
+</body>
+
+		<div class="col-md-4" style="height: auto !important;">
+<div class="mb-4">
+	&nbsp;</div>
+<div class="list-group mb-4">
+	<b>
+	<a class="list-group-item text-decoration-none list-group-item-primary">Font Converter</a></b><div class="card-body bg-light">
+		<ul>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/">Akruti &gt; Unicode</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/Shreelipi.htm">Shreelipi &gt; Unicode</a></li>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/Gist.htm">Gist &gt; Unicode</a></li>
+			<li>shruti &gt; Unicode</li>
+			<li>Aprant &gt; Unicode</li>
+		</ul>
+	</div>
+	<p>&nbsp;<b><a class="list-group-item text-decoration-none list-group-item-success">Non-Unicode Converter</a></b></p>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/unitoak/">Unicode &gt; Akruti</a></li>
+		</ul>
+	</div>
+	</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Home)</b></div>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/spellchecker/">Odia</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/spellchecker-hindi/">Hindi</a></li>
+		</ul>
+	</div>
+</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning" style="background-color: #C0C0C0 !important"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Add-on)</b></div>
+	<div class="card-body bg-light">
+		<p align="center"><span style="font-size: 13pt">Installing a dictionary
+		<b>
+		<a href="https://font-exchange.github.io/spellchecker/content/Spell_add-on_inner.htm">
+		<font color="#FF0000">add-on</font></a></b> will add a new language 
+		option to your spell-checker, which checks your spelling as you type.</span></p></div>
+</div>
+		</div>
+
+  		<BODY bgcolor="#EAF0F8" topmargin="10" leftmargin="10" rightmargin="10" bottommargin="10">
+	</div>
+</div>
+<div class="container">
+	-<footer class="bg-light border-top p-3"><div class="row">
+		<div class="col-sm-4 small pb-2">
+			<p style="text-align: center">expoodisha.com 2023. All Rights Reserved.</div>
+	</div>
+</div>
+</footer>
+
+
+</body></html>
