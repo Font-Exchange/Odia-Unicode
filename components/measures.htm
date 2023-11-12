@@ -30,7 +30,6 @@ function showResult(str) {
 
 
 <style>
-<!--
 .curtab {
 	background-Color: #FFFFFF;
 	cursor: hand;
@@ -47,10 +46,7 @@ function showResult(str) {
 	font-size:9pt;
 	font-weight: bold;
 }
-.tb {font-family:'arial,verdana,arial,Simsun'; font-size:9pt;}
--->
 </style>
-
 <script type=text/javascript>
 function tabit(btn, page)
 {
@@ -435,11 +431,10 @@ function resetTempRe(form) {
 
 </script>
 
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mshadow py-0 mb-4">
 <div class="container">
-	<img loading="lazy" src="https://font-exchange.github.io/spellchecker/logo/spell_logo.png" alt="" title="" width="267" height="50">
+	<a class="navbar-brand pr-5" href="">
+	<img loading="lazy" src="../../Users/shrim/Downloads/spellchecker-main(2)/spellchecker-main/dynamic_files/spell_logo.png" alt="" title="" width="267" height="50"></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
@@ -476,7 +471,7 @@ function resetTempRe(form) {
 <div class="container" style="height: auto !important;">
 	<div class="row" style="height: auto !important;">
 		<div class="col-sm-8">
-			<h1><font size="4" color="#6699FF">Weights &amp; Measures Converter :</font></h1>
+			<h1><font size="4" color="#6699FF">Weights &amp; Measures Converter : </font></h1>
 <div class="card mb-4">
 	
 
@@ -487,7 +482,7 @@ function resetTempRe(form) {
 	&nbsp;</div>
 
 <div id="srctime">
-<table style="font-family:'Tahoma, Arial'; font-size:10pt" border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#AACCEE" style="border-collapse: collapse">
+&nbsp;<table style="font-family:'Tahoma, Arial'; font-size:10pt" border="1" width="100%" cellspacing="0" cellpadding="3" bordercolor="#AACCEE" style="border-collapse: collapse">
 	<tr>
 		<td id="tab0" width="12.5%" align="center" onclick="tabit(this, 0)" class="curtab">Weight</td>
 		<td id="tab1" width="12.5%" align="center" onclick="tabit(this, 1)" class="notab">Length</td>
@@ -910,30 +905,10 @@ function resetTempRe(form) {
             <tbody>
            <form action="">
             <tr height=10>
-                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					&nbsp;</td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					&nbsp;</td>
-                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					&nbsp;</td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					&nbsp;</td>
-				<td style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
+				<td colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td></tr>
 
                 <tr>
-                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Table spoon<font style="font-size:8pt;">(Tbs)</font></td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					<input name=uscTable_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					<input onClick="if (checkNum(uscTable_spoon.value)) compute(this.form,uscTable_spoon.name,vol_data)" type=button value="Convert" name=uscTable_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
-                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Tea spoon<br/><font style="font-size:8pt;">(tsp)</font></td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					<input name=uscTea_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
-                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
-					<input onClick="if (checkNum(uscTea_spoon.value)) compute(this.form,uscTea_spoon.name,vol_data)" type=button value="Convert" name=uscTea_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
-                  <td align=center style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
                 </tr>
                 <tr> 
                   <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cubic meter<br/><font style="font-size:8pt;">(m<sup>3</sup>)</font></td>
@@ -1019,6 +994,11 @@ function resetTempRe(form) {
                   <td colspan=3 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
                 </tr>
                 <tr>
+                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric Cooking System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
+                </tr>
+                
+                
+                <tr>
                   <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Table spoon<br /><font style="font-size:8pt;">(Table spoon)</font></td>
                   <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
 					<input name=mcTable_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
@@ -1031,16 +1011,30 @@ function resetTempRe(form) {
 					<input onClick="if (checkNum(mcTea_spoon.value)) compute(this.form,mcTea_spoon.name,vol_data)" type=button value="Convert" name=mcTea_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
                 </tr>
                 <tr>
-                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">&nbsp;</td>
-                </tr>
-                <tr>
-                  <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[Metric Cooking System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
-                </tr>
-                <tr>
                   <td align=center colspan=6 style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"><b>[USA Cooking System]</b><hr style="border-style: dotted;" color=#cccccc size=1 /></td>
                 </tr>
+
+                
+                <tr>
+                
+                   <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					Table spoon<font style="font-size:8pt;">(Tbs)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscTable_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscTable_spoon.value)) compute(this.form,uscTable_spoon.name,vol_data)" type=button value="Convert" name=uscTable_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=right style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					Tea spoon<br/><font style="font-size:8pt;">(tsp)</font></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input name=uscTea_spoon size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                  <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					<input onClick="if (checkNum(uscTea_spoon.value)) compute(this.form,uscTea_spoon.name,vol_data)" type=button value="Convert" name=uscTea_spoon_bt style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
+                </tr>
+                
+                
                 <tr> 
-                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">Cup<font style="font-size:8pt;">(fl oz)</font></td>
+                  <td align=right nowrap style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
+					Cup<font style="font-size:8pt;">(fl oz)</font></td>
                   <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
 					<input name=uscCup size="12" style="font-family: arial,verdana,arial,Simsun; font-size: 9pt"></td>
                   <td align=left style="font-family: arial,verdana,arial,Simsun; font-size: 9pt">
