@@ -10,6 +10,7 @@ textarea.val(textarea.val().replace(/ଡ଼/g,"ଡ଼"));
 textarea.val(textarea.val().replace(/ ଜ୍ଝ/g,"।"));
 textarea.val(textarea.val().replace(/,  /g,", "));
 textarea.val(textarea.val().replace(/ ।/g,"।"));
+textarea.val(textarea.val().replace(/ ।/g,"ଖ"));        
 
 
 
