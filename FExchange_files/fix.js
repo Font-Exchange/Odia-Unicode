@@ -2,12 +2,11 @@
     $('#btnfix').click(function() {
     var textarea=$('#Unicode'); 
 
-textarea.val(textarea.val().replace(/ର୍ୟ୍ୟ/g,"ର୍ଯ୍ୟ")); textarea.val(textarea.val().replace(/ତ୍ଵ/g,"ତ୍ବ"));  textarea.val(textarea.val().replace(/ସ୍ଵ/g,"ସ୍ବ")); textarea.val(textarea.val().replace(/ଵ/g,"ବ")); textarea.val(textarea.val().replace(/ଡ଼/g,"ଡ଼"));
-textarea.val(textarea.val().replace(/ ଜ୍ଝ/g,"।")); textarea.val(textarea.val().replace(/,  /g,", ")); textarea.val(textarea.val().replace(/ ।/g,"।")); textarea.val(textarea.val().replace(/ଅଂକ/g,"ଅଙ୍କ")); textarea.val(textarea.val().replace(/ବଂଟନ/g,"ବଣ୍ଟନ"));
-textarea.val(textarea.val().replace(/କଂଚି/g,"କଞ୍ଚି")); textarea.val(textarea.val().replace(/ଅଂଚ/g,"ଅଞ୍ଚ")); textarea.val(textarea.val().replace(/ସଂଜ/g,"ସଞ୍ଜ")); textarea.val(textarea.val().replace(/ଆଂଚ/g,"ଆଞ୍ଚ")); textarea.val(textarea.val().replace(/ଯୋଗୁ/g,"ଯୋଗୁଁ"));
-textarea.val(textarea.val().replace(/ଊର୍ଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ")); textarea.val(textarea.val().replace(/ଊଦ୍ଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ")); textarea.val(textarea.val().replace(/ଊଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ")); textarea.val(textarea.val().replace(/ଗ୍ରିଲ/g,"ଗ୍ରିଲ୍‌")); textarea.val(textarea.val().replace(/ପ୍ରତିଶୃତି/g,"ପ୍ରତିଶ୍ରୁତି"));
-textarea.val(textarea.val().replace(/ସ୍ବାଧିନତା/g,"ସ୍ବାଧୀନତା")); textarea.val(textarea.val().replace(/ଶଯା/g,"ଶଯ୍ୟା")); textarea.val(textarea.val().replace(/ଶର୍ଯ୍ୟା/g,"ଶଯ୍ୟା")); textarea.val(textarea.val().replace(/ଜନେକ/g,"ଜନୈକ"));
-textarea.val(textarea.val().replace(/ବଂଧ/g,"ବନ୍ଧ")); textarea.val(textarea.val().replace(/କଂଧ/g,"କନ୍ଧ")); textarea.val(textarea.val().replace(/ରଂଧ/g,"ରନ୍ଧ"));
+textarea.val(textarea.val().replace(/ର୍ୟ୍ୟ/g,"ର୍ଯ୍ୟ"));textarea.val(textarea.val().replace(/ତ୍ଵ/g,"ତ୍ବ")); textarea.val(textarea.val().replace(/ସ୍ଵ/g,"ସ୍ବ"));textarea.val(textarea.val().replace(/ଵ/g,"ବ"));textarea.val(textarea.val().replace(/ଡ଼/g,"ଡ଼"));
+textarea.val(textarea.val().replace(/ ଜ୍ଝ/g,"।"));textarea.val(textarea.val().replace(/,  /g,", "));textarea.val(textarea.val().replace(/ ।/g,"।"));textarea.val(textarea.val().replace(/ଅଂକ/g,"ଅଙ୍କ"));textarea.val(textarea.val().replace(/ବଂଟନ/g,"ବଣ୍ଟନ"));
+textarea.val(textarea.val().replace(/କଂଚି/g,"କଞ୍ଚି"));textarea.val(textarea.val().replace(/ଅଂଚ/g,"ଅଞ୍ଚ"));textarea.val(textarea.val().replace(/ସଂଜ/g,"ସଞ୍ଜ"));textarea.val(textarea.val().replace(/ଆଂଚ/g,"ଆଞ୍ଚ"));textarea.val(textarea.val().replace(/ଯୋଗୁ/g,"ଯୋଗୁଁ"));
+textarea.val(textarea.val().replace(/ଊର୍ଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));textarea.val(textarea.val().replace(/ଊଦ୍ଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));textarea.val(textarea.val().replace(/ଊଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));textarea.val(textarea.val().replace(/ଗ୍ରିଲ/g,"ଗ୍ରିଲ୍‌"));textarea.val(textarea.val().replace(/ପ୍ରତିଶୃତି/g,"ପ୍ରତିଶ୍ରୁତି"));textarea.val(textarea.val().replace(/ସ୍ବାଧିନତା/g,"ସ୍ବାଧୀନତା"));textarea.val(textarea.val().replace(/ଶଯା/g,"ଶଯ୍ୟା"));textarea.val(textarea.val().replace(/ଶର୍ଯ୍ୟା/g,"ଶଯ୍ୟା"));
+textarea.val(textarea.val().replace(/ଜନେକ/g,"ଜନୈକ"));textarea.val(textarea.val().replace(/ବଂଧ/g,"ବନ୍ଧ"));textarea.val(textarea.val().replace(/କଂଧ/g,"କନ୍ଧ"));textarea.val(textarea.val().replace(/ରଂଧ/g,"ରନ୍ଧ"));
 
     });
 });
