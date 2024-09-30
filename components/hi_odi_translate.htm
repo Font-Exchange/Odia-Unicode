@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Translator</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+function showResult(str) {
+  if (str.length==0) {
+    document.getElementById("livesearch").innerHTML="";
+    document.getElementById("livesearch").style.border="0px";
+    return;
+  }
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("livesearch").innerHTML=this.responseText;
+      document.getElementById("livesearch").style.border="1px solid #A5ACB2";
+    }
+  }
+  xmlhttp.open("GET","https://expoodisha.com/Software/spellchecker/livesearch.php?q="+str,true);
+  xmlhttp.send();
+}
+</script>
+
+
+<link rel="stylesheet" href="../../spellchecker/content/bootstrapc.css">
+<link rel="stylesheet" href="../../spellchecker/content/stylec.css">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top mshadow py-0 mb-4">
+<div class="container">
+	<img loading="lazy" src="https://font-exchange.github.io/spellchecker/Odia%20Spell%20Checker_files/spell_logo.png" alt="" title="" width="267" height="50">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item pr-2">
+			<a class="nav-link text-dark" href="https://font-exchange.github.io/spellchecker/"><i class="fas fa-home"></i> 
+			Home <span class="sr-only">(current)</span></a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/dynamic.htm">
+			Dynamic Spell</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/Odia-Unicode/components/components.htm">
+			Components</a></li>
+			<li class="nav-item dropdown pr-2">
+				<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/contact.htm"><i class="fas fa-envelope"></i> 
+				Contact</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary" href="https://font-exchange.github.io/spellchecker/content/help.htm">Help</a></li>
+			<li class="nav-item pr-2">
+			<a class="nav-link text-primary">
+			Search&gt;&gt;</a></li>
+		</ul>
+		<form class="form-inline my-4 my-lg-0" role="search" name="search" id="search" method="get" action="/search/">
+			<div class="input-group">
+				<input type="text" class="form-control" onkeyup="showResult(this.value)" name="T49" size="20">  
+			<div id="livesearch"></div>
+				
+				<div class="input-group-append">&nbsp;</div>
+			</div>
+		</form>
+	</div>
+</div>
+</nav>
+
+<div class="container" style="height: auto !important;">
+	<div class="row" style="height: auto !important;">
+		<div class="col-sm-8">
+			<h1><font size="4" color="#6699FF">Translator :</font></h1>
+<div class="card mb-4">
+	<div class="myDiv" id= "google_translate_element" style="width: 728px; height: 42px">
+		<div style="position: absolute; width: 100px; height: 100px; z-index: 1; left: 604px; top: 8px" id="layer1">
+			<img border="0" src="hindi_odia.png" width="105" height="24"></div><p style="text-align: right"></div>
+
+     <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'hi' , includedLanguages : 'or'}, 'google_translate_element');
+        }
+    </script>
+    
+    <script>
+    var trans = jQuery('select.goog-te-combo');
+trans.val('or')
+trans.change();
+    </script>
+<style>
+.myDiv {
+  border: 0px outset red;
+  background-color: lightblue;    
+  text-align: left;
+  height: 42px;
+  width:700px;
+}
+</style>
+    <script type="text/javascript" 
+            src=
+"https://translate.google.com/translate_a/element.js?
+cb=googleTranslateElementInit">
+    </script>
+
+    <div onClick="this.contentEditable='true';" style="width:728px;border:1px solid gray;padding:10px;overflow-x:scroll; height:500px" id="tr">Dorp your text<p>&nbsp;</div>
+
+		</div>
+		&nbsp;</div>
+		<div class="col-md-4" style="height: auto !important;">
+<div class="mb-4">
+	&nbsp;</div>
+<div class="list-group mb-4">
+	<b>
+	<a class="list-group-item text-decoration-none list-group-item-primary">Font Converter</a></b><div class="card-body bg-light">
+		<ul>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/">Akruti &gt; Unicode</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/Odia-Unicode/Shreelipi.htm">Shreelipi &gt; Unicode</a></li>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/Gist.htm">Gist &gt; Unicode</a></li>
+			<li>shruti &gt; Unicode</li>
+			<li>Aprant &gt; Unicode</li>
+		</ul>
+	</div>
+	<p>&nbsp;<b><a class="list-group-item text-decoration-none list-group-item-success">Non-Unicode Converter</a></b></p>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/Odia-Unicode/unitoak/">Unicode &gt; Akruti</a></li>
+		</ul>
+	</div>
+	</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Home)</b></div>
+	<div class="card-body bg-light">
+		<ul>
+			<li><a href="https://font-exchange.github.io/spellchecker/">Odia</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/spellchecker-hindi/">Hindi</a></li>
+			<li>
+			<a href="https://font-exchange.github.io/spellchecker/english_spellchecker.htm">
+			English</a></li>
+		</ul>
+	</div>
+</div>
+<div class="card mb-4">
+	<div class="card-header bg-warning" style="background-color: #C0C0C0 !important"><i class="fas fa-envelope"></i> <b>Spell 
+		Checker (Add-on)</b></div>
+	<div class="card-body bg-light">
+		<p align="center"><span style="font-size: 13pt">Installing a dictionary
+		<b>
+		<a href="https://font-exchange.github.io/spellchecker/content/Spell_add-on_inner.htm">
+		<font color="#FF0000">add-on</font></a></b> will add a new language 
+		option to your spell-checker, which checks your spelling as you type.</span></p></div>
+</div>
+		</div>
+
+	</div>
+</div>
+<div class="container">
+	-<footer class="bg-light border-top p-3"><div class="row">
+		<div class="col-sm-4 small pb-2">
+			<p style="text-align: center">expoodisha.com 2023. All Rights Reserved.</div>
+	</div>
+</div>
+<script>
+
+
+</script>
+
+</footer>
+
+
+</body></html>
