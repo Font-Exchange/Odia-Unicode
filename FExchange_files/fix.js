@@ -26,7 +26,6 @@ textarea.val(textarea.val().replace(/ଊଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"))
 textarea.val(textarea.val().replace(/ଊର୍ଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉର୍ଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉଦ୍ଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));
-textarea.val(textarea.val().replace(/ଉଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉର୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));
