@@ -30,7 +30,6 @@ textarea.val(textarea.val().replace(/ଉଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉର୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଉର୍ଧ୍ବ/g,"ଊର୍ଦ୍ଧ୍ବ"));
-textarea.val(textarea.val().replace(/ଉଦ୍ଧ/g,"ଊର୍ଦ୍ଧ୍ବ"));
 textarea.val(textarea.val().replace(/ଗ୍ରିଲ/g,"ଗ୍ରିଲ୍‌"));
 textarea.val(textarea.val().replace(/ପ୍ରତିଶୃତି/g,"ପ୍ରତିଶ୍ରୁତି"));
 textarea.val(textarea.val().replace(/ସ୍ବାଧିନତା/g,"ସ୍ବାଧୀନତା"));
