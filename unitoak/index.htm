@@ -141,7 +141,343 @@ textarea
 
 <body>
     
-   
+   <script type="text/javascript">
+
+function convert_to_akruti()
+{
+    var unicodeToAkrutiCharMap = new Array(
+        
+        "\u0964", "ö", // \u0964 Devanagari Danda with Odia purnachheda
+        //" ।", " û", // Aa kara 
+        "।", "ö", // purnacheda
+        //"", "÷÷÷", //
+        // double accented - AkrutiOriSarala
+        //"୍ମ" , "£", // ma phala
+        "୍ମ" , "à" ,// ma phala
+        "୍ମୃ" , "á" ,// (halanta)m-Rû
+        "୍ର" , "â" ,// ra
+        "୍ର" , "ã" ,// reph
+        "୍ଲ" , "ä" ,// la phala
+        //"୍ଭ" , "å" ,// halanta- bha
+        "୍ଳ" , "æ" ,// halanta-La
+        //"୍ୱ" , "ç" ,// ba phala 
+        "୍ସ" , "è" ,// halanta-sa
+        "୍ୟ" , "ý",// ja phala
+        "୍ୟ" , "¥",// ja phala
+        "ିଁ" , "ó",// i kara
+
+        "ୱ", "Iß" ,//wa
+        "ଡ଼" , "Wÿ" ,// Da with bindu
+        "ଢ଼" , "Xÿ" ,// Dha with bindu
+        //"ଚ" , "Pÿ" ,// c
+        "ଥି" , "[ô" ,// thi
+        "ଧି" , "]ô" ,// dhi 
+        "ଖି" , "Lô" ,// khi
+        "ତ୍ମ" , "cô",// tma
+        "ତ୍ପ" , "_ô",// tma
+
+        "ା" , "û" ,// aa kara
+        "ି" , "ò" ,// i kara
+        "ୀ" , "ú" ,// dirgha i kara
+        "ୁ" , "ê" ,// u kara
+        "ୁ" , "ë" ,// u kara
+        "ୂ" , "ì" ,// dirgha i kara
+        "ୂ" , "í" ,// dirgha u kara
+        "ୃ" , "é" ,// ru kara
+
+        "ଁ" , "ñ",// chandrabindu
+        "ଂ" , "õ",// anuswara
+        "ଃ" , "ü",// bisarga
+        "୍" , "þ",//halanta
+        "୍‌" , "¨",// halanta with zero width non-joiner
+        "¨", "୍‍" , // halanta with zero width joiner
+        "୧" , "1" ,// Numeric 1
+        "୨" , "2" ,// Numeric 2
+        "୩" , "3" ,// Numeric 3
+        "୪" , "4" ,// Numeric 4
+        "୫" , "5" ,// Numeric 5
+        "୬" , "6" ,// Numeric 6
+        "୭" , "7" ,// Numeric 7
+        "୮" , "8",// Numeric 8
+        "୯" , "9" ,// Numeric 9
+        "୦" , "0" ,// Numeric 10
+        "୰" , "#" ,// late
+        "ଽ" , "$" , 
+        "ଌ" , "&" ,// lu
+        //"ଞ୍ଚ" , "*" ,// nc
+        "୍ରୁ" , "î" ,// halanta-r-u
+        "୍ରୂ" , "ï" ,// halanta-r-dirgha u
+
+        "୍କ" , "Ñ" ,// halanta-k
+        "୍ଖ" , "Ò" ,// halanta-kh
+        "୍ଗ" , "Ó" ,// halanta-g
+        "୍ଚ" , "Ô" ,// halanta-c
+        "୍ଜ" , "Õ" ,// halanta-j
+        "୍ଟ" , "Ö" ,// halanta-T
+        "୍ଠ" , "×" ,// halanta-Th
+        "୍ଡ" , "Ø" ,// halanta-D
+        "୍ଣ" , "Ù" ,// halanta-N
+        "୍ଥ" , "Ú" ,// halanta-th
+        "୍ଧ" , "Û" ,// halanta-dh
+        "୍ନ" , "Ü" ,// halanta-n
+        "୍ପ" , "Ý" ,// halanta-p
+        "୍ଫ" , "Þ" ,// halanta-ph
+        "୍ୱ" , "ß" ,// halanta-b  
+        
+
+        "ଆ" , "@û" ,// aa
+        "ଅ" , "@" ,// a
+        "ଇ" , "A" ,// i
+        "ଈ" , "B" ,// dirgha i
+        "ଉ" , "C" ,// u
+        "ଊ" , "D" ,// dirgha u
+        "ଋ" , "E" ,// R
+        "ୠ" , "F" ,// RR
+        "ଏ" , "G" ,// e
+        "ଐ" , "H" ,// ai
+        "ଐ", "Gø",// ai
+        "ଓ" , "I" ,// o
+        "ଔ" , "J" ,// au 
+
+        "କ" , "K" ,// k
+        "ଖ" , "L" ,// kh
+        "ଗ" , "M" ,// g
+        "ଘ" , "N" ,// gh
+        "ଙ" , "O" ,
+
+        "ଚ",  "P" ,// c
+        "ଛ", "Q" ,// ch
+        "ଜ", "R" ,// j
+        "ଝ", "S" ,// jh
+        "ଞ", "T" ,// Nya
+
+        "ଟ" , "U",// T
+        "ଠ" , "V",// Th
+        "ଡ" , "W",// D
+        "ଢ" , "X",// Dh
+        "ଣ" , "Y",// N
+        "ତ" , "Z" ,// t
+        "ଥ" , "[" ,// th
+        "ଦ" , "\\" ,// d
+        "ଧ" , "]" ,// dh
+        "ନ" , "^",// n
+        "ଯ" , "~" ,// y
+        "ପ", "_" ,// p
+        "ଫ", "`" ,// ph
+        "ବ", "a" ,// b
+        "ଭ", "b" ,// bh
+        "ମ", "c" ,// m
+        "ୟ" , "d" ,// y
+        "ର" , "e" ,// r
+        "ଲ" , "f" ,// l
+        "ଶ" , "g" ,// S (talabya sa)
+        "ଷ" , "h" ,// sh (murdhanya sa)
+        "ସ" , "i" ,// s
+        "ହ" , "j" ,// h
+        "ଳ" , "k" ,// L
+        ) 
+    
+    var yuktakshar = {
+        //<Swarup>
+        //ଞ୍ଛ	TþQ //todo
+        "^þù" : "ù^þ",  // ନ୍େ to ନେ୍ (for ସନ୍ଦେହ, ପିନ୍ଧେ etc )
+        "WþW" : "WØ", // dda ଡ୍ଡ
+        "þIß" : "ß" , // dwa
+        "^þ[" : "^Ú" , // ntha
+        "WþM" :  "WÓ",  //ଡ୍ଗ
+        "\u005cþM" : "\u005cÓ", //ଦ୍ଗ
+        "RðþR" : "{ð" ,  // ର୍ଜ୍ଜ
+        "PðþQ" : "zð",  // ର୍ଚ୍ଛ 
+        "YðþY" : "‰ð",  // ର୍ଣ୍ଣ	
+        "ZþK" :  "}", //  ତ୍କ	
+        "aþa" : "±",   // ବ୍ବ	
+        "fþ`" : "fÞ",  // ଲ୍ଫ	
+        "oâ" : "KÖâ", // କ୍ଟ୍ର	
+        "KþhþY" : "Ð", // କ୍ଷ୍ଣ	
+        "KþK" : "KÑ"  , //  କ୍କ	
+        "ZðþZ" : "ð",   //ର୍ତ୍ତ
+        "iþ[" : "iÚ",  // ସ୍ଥ	
+        "\u005cþù\u005c" : "ùŸ", // ଦ୍ଦେ
+        "\u005cðþ\u005c" : "Ÿð",  // ର୍ଦ୍ଦ	escaped backslash with unicode 005c
+        "\u005cðþù\u005c" : "ùŸð" ,  // ର୍ଦ୍ଦେ
+        "iþ[ý" : "iÚý" , // ସ୍ଥ୍ୟ	
+        "^þ¤" :  "§ý",  // ନ୍ଧ୍ୟ	
+        "PðþP" : "yð", //  ର୍ଚ୍ଚ	
+        "\u005cðþ]" : "¡ð"  , //  ର୍ଦ୍ଧ	escaped backslash with unicode 005c
+        "iþ[" : "iÚ" , // ସ୍ଥ
+        "aþR" : "aÔ", // ବ୍ଜ
+        "fþ_" : "fÝ", // ଲ୍ପ
+        //</Swarup>
+        "YþU" : "<" ,   // ଣ୍ଟ
+        "UþU" : "…" ,   // ଟ୍ଟ
+        "cþ_": "µ",     //mpa // Note.. ମ୍ପ in Akruti is 00B5 (µ) and not 03BC (μ)
+        "cþ`": "¶",     //mpha
+        "YþY": "‰" ,    // NN
+        "YþW": "Š",     // ND
+
+        "YþV" : "Œ" ,   // NTh
+        "Zà" : "™" ,    // tm
+        "_ô" : "š" ,    // tp
+        "ZèÜ" : "œ",    // t-s-n        check
+        "Zè" : "›" ,    // ts
+        "\\þ\\" : "Ÿ",  // d-dh
+
+        "RþR" : "{",    // jj
+        "RþS" : "|",    // j-jh
+        //"Kâ" : "}" ,    // kr // commented by  Swarup
+
+        "\\þ]" : "¡" ,  // d-dh
+        "¡ô": "¡ò",     //ddhi
+        "\\þN" : "¢" ,   // d-gh
+        "]ý" : "¤" ,    // dhya
+        "^þ\\" : "¦" ,  // nd
+        "^þ]" : "§" ,   // ndh
+        "ZþZ" : "©" ,   // tt
+        "^þZ" : "«" ,   // nt
+        "«â" : "ª" ,    // ntr (jantra)
+        "TþR" : "¬" ,   // nj
+        "TþS" : "ƒ" ,   // njh
+        "_þ_" : "®" ,   // pp
+        "_þZ" : "¯" ,   // pt
+
+        "_è" : "°",     // ps
+        "aþ\\" : "±" ,  // bd          
+        "aþ]" : "²" ,   // bdh
+        "cþa" : "´" ,   // mb
+        "cþb" : "¸" ,   // mbh
+        "cà" : "¹" ,    // mm
+        "fþK" : "º" ,   // lk
+        "fþM" : "»" ,   // lg
+        "gþQ" : "¼" ,   // Nch
+        "gþP" : "½" ,   // S-ch (talabya sa - ca)
+        "hþY" : "¾" ,   // sh-N (murdhanya sa - Na)
+        "hþ_" : "¿" ,   // sh-p (murdhanya sa - pa)
+
+        "hþ`" : "À" ,   // sh-ph (murdhanya sa - pha)
+        "hþU" : "Á" ,   // sh-T (murdhanya sa - Ta)
+        "hþV" : "Â" ,   // sh-Th (murdhanya sa - Tha)
+        "hþK" : "Ã" ,   // sh-k (murdhanya sa - ka)
+        "iþK" : "Ä" ,   // s-k
+        "iþL" : "Å" ,   // sh-kh
+        "iþ_" : "Æ" ,   // sp
+        "iþ`" : "Ç" ,   // sph
+        "iþZâ" : "È" ,  // str
+        "iþZ" : "É" ,   // st
+        "iç" : "Ê" ,    // sb
+        "kþK" : "Ë" ,   // lk
+        "kþ_" : "Ì" ,   // Lp
+        "kþ`" : "Í" ,   // Lph
+        "Zþ[" : "Î" ,   // t-th
+        "kæ" : "Ï" ,    // L-L
+
+        "KþZ" : "q",    //kt,
+        "lþY" : "Ð" ,   // khya-N
+        "þ^" : "Ü",      //nha
+        "gþP" : "½",     //scha
+        "PþQ" : "z",     //cchu
+        "OþM" : "w",     //nga
+        "Kþh" : "l",     //ksh
+        "OþK" : "u",     //nka
+        "OþL" : "v",     //nkha
+        "OþN" : "x",    //ngha
+        "YþX" : "‹",    //ndh
+        "PþP" : "y",    //ccha
+        "RþT" : "m",     //ngya
+        "\\þb" : "n",    //dbh
+        "KþU" : "o",    //kT
+        "KþUâ" : "p",   //kTr
+        "Kè" : "r",     //ska
+        "Mþ\\" : "s",   //gda
+        "Mþ]" : "t",    //gdha
+        "TþP" : "*",    //ncha
+        "TþQ" : "‚",    // nchha ଞ୍ଛ
+        "ñò": "ó",      //chandrabindu
+        "eþ[ò" : "[ôð", // ଆର୍ଥିକ
+        "eþ]ò" : "]ôð", // ବର୍ଧିତ // no such word, can be ignored
+    }
+    
+    var str = document.getElementById("uInput").value;	
+
+    Replace_text() ;
+    
+    document.getElementById("Unicode").value = str
+    
+    function Replace_text() 
+    {
+        if ( str == "" ) return ;
+        
+        // convert all combined ଵ (\u0B35) to ୱ \u0B71 ) 
+        str = str.replace( /\u0B4D\u0B35/g, "\u0B4D\u0B71" ) ; 
+        // Handle ସ୍ବାଦ, leave ର୍‌ and ବ୍‌ out of it , ବ is for ତିବ୍ବତ
+        str = str.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫଭମଯଲଳଵଶଷସହକ୍ଷଜ୍ଞୟ])([୍])ବ/g , "$1$2\u0B71" ) ;
+
+        //now convert all ଵ (\u0B35) to ବ
+        str = str.replace( /ଵ/g, "ବ" ) ; 
+
+        //case of ନ୍ତ୍ର୍ୟ as in ସ୍ଵାତନ୍ତ୍ର୍ୟ, complicated case, therefore plain hack
+        str = str.replace( /\u0B28\u0B4D\u0B24\u0B4D\u0B30\u0B4D\u0B5F/g, "ªý" ) ; 
+
+        // case of ବାତ୍ସଲ୍ଯ, ଯ is used in case of ୟ, leave ର out of it, otherwise it will fail କାର୍ଯ୍ୟକ୍ରମ
+        str = str.replace( /([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯଲଳଵଶଷସହକ୍ଷଜ୍ଞୟ])([୍])ଯ/g , "$1$2ୟ" ) ;
+
+        // convert ଥି and ଧି inside Yuktakshar to ଥ ି and ଧ ି , 
+        // This is required for ସ୍ଥିତ, ବର୍ଦ୍ଧିତ etc. Handled them again with yuktakshar
+        str = str.replace( /\u0B4D\u0B25\u0B3F/g, "\u0B4D[ò" ) ; // ୍ ଥ ି to akrtuti  ୍ ଥ ି
+        str = str.replace( /\u0B4D\u0B27\u0B3F/g, "\u0B4D]ò" ) ; //  ୍ ଧ ି to akruti  ୍ ଧ ି
+        
+        // Handle reph (half r) ସର୍ବେ ଅର୍ଜେ ଅର୍ଜ୍ଜେ ସର୍ଶ୍ମେ ବର୍ଷେ ପରିବର୍ତ୍ତେ ସର୍ବ ଦର୍ପ୍ପ ଆର୍ତ୍ତତ୍ରାଣ କର୍ତ୍ତୃପକ୍ଷ ଦୁର୍ଦ୍ଦକ୍ଷ
+        str = str.replace( /ର୍([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳଵଶଷସହକ୍ଷଜ୍ଞୟ])([୍])([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳଵଶଷସହକ୍ଷଜ୍ଞୟ])/g , "$1$2$3ð" ) ;
+        str = str.replace( /ର୍([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯରଲଳଵଶଷସହକ୍ଷଜ୍ଞୟ])([ାିୀୁୂୃେୈୋୌଂଁ]*)/g , "$1$2ð" ) ;
+
+        // following statements for adjusting position of ai, o and au maatraas.
+        str = str.replace( /ୈ/g, "ù÷") ;
+        str = str.replace( /ୋ/g, "ùା" ) ;
+        str = str.replace( /ୌ/g, "ùø" ) ;
+
+        // Handling େ karo
+        str = str.replace( /େ/g, "ù") ; 
+        str = str.replace( /([୍])([କଖଗଘଚଛଜଝଟଠଡଡ଼ଢଢ଼ଣତଥନପଫବଭମୟରଲବୱଶଷସହକ୍ଷଡ଼ଳ])([ù])/g , "$3$1$2" ) ;
+        str = str.replace( /(.)(.)([ð])([ù])/g , "$4$1$2$3" ) ; // Handling ସର୍ଶ୍ମେ ବର୍ଷେ ପରିବର୍ତ୍ତେ etc.
+        str = str.replace( /([କଖଗଘଙଚଛଜଝଞଟଠଡଡ଼ଢଢ଼ଣତଥଦଧନପଫବଭମଯୟରଲବୱଶଷସହକ୍ଷଡ଼ଳ])([ù])/g , "$2$1" ) ;
+
+        // Adjustment of ଡ଼ . at times nukta character is attached with ଡ though ଡ଼ is available
+        // Handle ଡ଼େ, ଢ଼େ first
+        str = str.replace(/\u0B21\u0B3Cù/g, "ùWÿ" ) ; // ଡ followed by ଼ followed by େ to ଡ଼େ
+        str = str.replace(/\u0B22\u0B3Cù/g, "ùXÿ" ) ; // ଢ folllowed by ଼ followed by େ to ଢ଼େ 
+        str = str.replace(/\u0B21\u0B3C/g, "Wÿ" ) ; // ଡ followed by ଼ to ଡ଼
+        str = str.replace(/\u0B22\u0B3C/g, "Xÿ" ) ; // ଢ folllowed by ଼ to ଢ଼ 
+        
+        //replacement using the text array object
+        for ( i = 0;  i < unicodeToAkrutiCharMap.length-1;  i = i + 2 )
+        { 
+            if (str.includes( unicodeToAkrutiCharMap[i] ))
+            {
+                var toBeReplaced = new RegExp(unicodeToAkrutiCharMap[i], "g")
+                str = str.replace( toBeReplaced , unicodeToAkrutiCharMap[i+1] );
+            }
+        }
+
+        //adjustment of yuktakshar
+        Object.keys(yuktakshar).forEach( key => {
+            str = str.split(key).join(yuktakshar[key])
+        })
+        // run again.. in case you miss few
+        Object.keys(yuktakshar).forEach( key => {
+            str = str.split(key).join(yuktakshar[key])
+        })
+
+        // And finally, replace | with purnachheda... somehow it's popular to use | as purnachheda
+        str = str.split(' |').join("ö");
+    }
+}
+
+function SelectAll(id)
+{
+    document.getElementById(id).focus();
+    document.getElementById(id).select();
+}
+
+</script>
    
 
 <meta http-equiv="description" name="description">
@@ -368,12 +704,9 @@ function topFunction() {
 				</p>
 			<div class="row">
 					<div class="col-lg-12"><p>
-						<button type="button" class="button" id="fnrbtn" onclick="showButton()">
-						Check &#9650;</button>
-						<button type="button" class="button button2" id="btncan">
-						Conjuct &#9658;&#9668;</button>
-						<button type="button" class="button button3" id="converter" value="Convert &#9658;" onclick="akruti_to_unicode()">
-						Convert
+						<button type="button" class="button" id="fnrbtnx" onclick="showButton()">Check &#9650;</button>
+						<button type="button" class="button button2" id="btncanx">Conjuct &#9658;&#9668;</button>
+						<button type="button" class="button button3" id="converter" value="Convert &#9658;" onclick="convert_to_akruti()">Convert
 						&#9658;
 						</button>
 						<button type="reset" id="reset" onclick="hidebutton()" class="button button5">
