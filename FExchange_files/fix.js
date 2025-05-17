@@ -61,5 +61,6 @@ textarea.val(textarea.val().replace(/ପଂଚ/g,"ପଞ୍ଚ"));
 textarea.val(textarea.val().replace(/ପଂଚା/g,"ପଞ୍ଚା"));
 textarea.val(textarea.val().replace(/ଖୁଂଟ/g,"ଖୁଣ୍ଟ"));
 textarea.val(textarea.val().replace(/ଅଂଟ/g,"ଅଣ୍ଟ"));
+textarea.val(textarea.val().replace(/ଅଙ୍ଗନୱାଡ଼ି/g,"ଅଙ୍ଗନବାଡ଼ି"));
         });
 });
