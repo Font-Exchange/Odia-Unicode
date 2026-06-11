@@ -30,9 +30,6 @@ textarea.val(textarea.val().replace(/MWň/g,"MW˙ň"));
 textarea.val(textarea.val().replace(/eaň¦â/g,"eaú¦â"));
 textarea.val(textarea.val().replace(/ůPű÷/g,"ůPř"));
 textarea.val(textarea.val().replace(/ůP÷ű/g,"ůPř"));
-textarea.val(textarea.val().replace(/ପୌରାଂଚଳ/g,"ପୌରାଞ୍ଚଳ"));
-textarea.val(textarea.val().replace(/ଅଂଚଳ/g,"ଅଞ୍ଚଳ"));
-textarea.val(textarea.val().replace(/ପଂଚାୟତ/g,"ପଞ୍ଚାୟତ"));
 
     });
 });
